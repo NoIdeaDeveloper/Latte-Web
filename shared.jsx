@@ -163,10 +163,13 @@ Object.assign(window, { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS });
       .forEach(el => io.observe(el));
   }
 
-  // Initial pass after React's first render
-  setTimeout(observe, 0);
+  // Fire whenever React commits children to #root — catches both the initial
+  // render (which happens long after this script runs, due to Babel compile
+  // time) and subsequent route changes (key={route} on <main> swaps the node).
+  const root = document.getElementById('root');
+  if (root) new MutationObserver(observe).observe(root, { childList: true });
 
-  // Re-scan after every route change (React re-renders main on hashchange)
+  // Belt-and-suspenders: also re-scan two frames after every hashchange
   window.addEventListener('hashchange', () =>
     requestAnimationFrame(() => requestAnimationFrame(observe))
   );
