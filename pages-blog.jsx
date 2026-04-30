@@ -37,7 +37,7 @@ const BlogPage = () => {
                 <div className="card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                   <div className="placeholder-img" style={{ minHeight: 180, marginBottom: 20 }}>IMG</div>
                   <span className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 10 }}>{p.tag} · {p.date}</span>
-                  <h3 className="serif" style={{ marginBottom: 10 }}>{p.title}</h3>
+                  <h3 className="serif" style={{ fontSize: 'clamp(18px, 1.8vw, 24px)', marginBottom: 10 }}>{p.title}</h3>
                   <p style={{ color: 'var(--espresso-2)', fontSize: 14, flex: 1, marginBottom: 16 }}>{p.excerpt}</p>
                   <span className="mono" style={{ color: 'var(--caramel-deep)', fontSize: 11 }}>Read · {p.read} →</span>
                 </div>

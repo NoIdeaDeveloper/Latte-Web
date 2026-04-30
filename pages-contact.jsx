@@ -1,6 +1,6 @@
 // pages-contact.jsx
 const ContactPage = () => {
-  const [form, setForm] = React.useState({ name: '', email: '', business: '', service: 'house', budget: '2-5k', message: '' });
+  const [form, setForm] = React.useState({ name: '', email: '', business: '', service: 'design', budget: '2-5k', message: '' });
   const [errors, setErrors] = React.useState({});
   const [sent, setSent] = React.useState(false);
 
@@ -103,11 +103,11 @@ const ContactPage = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                 <div>
                   <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 4 }}>Email</div>
-                  <div style={{ fontSize: 18 }}>hello@latte.studio</div>
+                  <a href="mailto:hello@latte.studio" style={{ fontSize: 18 }}>hello@latte.studio</a>
                 </div>
                 <div>
                   <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 4 }}>Phone</div>
-                  <div style={{ fontSize: 18 }}>1-888-LATTE-WEB</div>
+                  <a href="tel:+18885288393" style={{ fontSize: 18 }}>1-888-LATTE-WEB</a>
                 </div>
                 <div>
                   <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 4 }}>Hours</div>

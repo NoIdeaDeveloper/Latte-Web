@@ -9,7 +9,7 @@ const MapleLeaf = ({ size = 12, color = 'currentColor' }) => (
 const CoffeeCup = ({ size = 280, withSteam = true, dark = false }) => {
   const cupColor = dark ? 'var(--cream)' : 'var(--espresso)';
   const liquid = dark ? 'var(--caramel)' : 'var(--caramel-deep)';
-  const foam = dark ? 'var(--foam)' : 'var(--foam)';
+  const foam = 'var(--foam)';
   return (
     <div className="cup" style={{ width: size, height: size * 1.1 }}>
       {withSteam && (
@@ -130,8 +130,8 @@ const Footer = () => (
         <div>
           <h4>Visit</h4>
           <ul>
-            <li>hello@latte.studio</li>
-            <li>1-888-LATTE-WEB</li>
+            <li><a href="mailto:hello@latte.studio">hello@latte.studio</a></li>
+            <li><a href="tel:+18885288393">1-888-LATTE-WEB</a></li>
             <li>Open Mon–Fri</li>
             <li>9am – 6pm ET</li>
           </ul>

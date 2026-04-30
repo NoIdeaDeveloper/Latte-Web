@@ -6,7 +6,7 @@ const FAQPage = () => {
     { q: 'Do I own the site when it\'s done?', a: 'Yes — every line of code, every design file, every account. We don\'t hold sites hostage. If you ever leave Latte, you take everything with you.' },
     { q: 'Can you redesign my existing site?', a: 'Absolutely. About a third of our work is redesigns. We\'ll audit what\'s working, what isn\'t, and rebuild it with care. Migration included.' },
     { q: 'Why Canadian hosting?', a: 'Speed (your customers are mostly in Canada), data residency (Canadian data stays under Canadian law), and we believe in keeping infrastructure spending in our own economy.' },
-    { q: 'What happens if I need an edit at midnight?', a: 'Daily Grind clients get priority email and chat. For real emergencies (site down, payment broken), we have a 24/7 line. We aim for under 30 minutes.' },
+    { q: 'What happens if I need an edit at midnight?', a: 'Site Management clients get priority email and chat. For real emergencies (site down, payment broken), we have a 24/7 line. We aim for under 30 minutes.' },
     { q: 'WordPress, Webflow, or custom?', a: 'Depends on the project. Most work is hand-coded with modern tools (Astro, Next.js) for performance. WordPress when content workflows demand it. We recommend what fits.' },
     { q: 'Can I cancel my management plan anytime?', a: 'Yes. No contracts, no cancellation fees. Pay month to month — and we\'ll happily transfer your site somewhere else if you need to leave.' },
     { q: 'Do you work with clients outside Canada?', a: 'We do. About 30% of our clients are in the US, UK, and EU. We\'re Canadian-based, so timing works best with North American hours.' },
@@ -31,7 +31,7 @@ const FAQPage = () => {
                 <span style={{ fontSize: 24, color: 'var(--caramel-deep)', flexShrink: 0, transform: open === i ? 'rotate(45deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>+</span>
               </button>
               <div style={{ maxHeight: open === i ? 500 : 0, overflow: 'hidden', transition: 'max-height 0.3s ease' }}>
-                <p style={{ paddingBottom: 24, color: 'var(--espresso-2)', fontSize: 'clamp(15px, 1.4vw, 16px)', maxWidth: 720, lineHeight: 1.7 }}>{it.a}</p>
+                <p style={{ paddingTop: 4, paddingBottom: 24, color: 'var(--espresso-2)', fontSize: 'clamp(15px, 1.4vw, 16px)', maxWidth: 720, lineHeight: 1.7 }}>{it.a}</p>
               </div>
             </div>
           ))}
