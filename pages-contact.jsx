@@ -19,7 +19,7 @@ const ContactPage = () => {
   if (sent) {
     return (
       <div className="page-fade">
-        <section style={{ padding: '120px 0' }}>
+        <section style={{ padding: 'clamp(60px, 10vw, 120px) 0' }}>
           <div className="container" style={{ textAlign: 'center', maxWidth: 600 }}>
             <div className="placeholder-img" style={{ width: 120, height: 120, borderRadius: '50%', margin: '0 auto', minHeight: 0, fontSize: 24, color: 'var(--caramel-deep)' }}>✓</div>
             <h1 className="serif" style={{ marginTop: 32, marginBottom: 20 }}>Message received.</h1>
@@ -35,7 +35,7 @@ const ContactPage = () => {
 
   return (
     <div className="page-fade">
-      <section style={{ padding: '80px 0 40px' }}>
+      <section style={{ padding: 'clamp(48px, 8vw, 80px) 0 clamp(24px, 5vw, 40px)' }}>
         <div className="container">
           <span className="eyebrow">Contact</span>
           <h1 className="serif" style={{ marginTop: 16, marginBottom: 24, fontSize: 'clamp(48px, 8vw, 96px)' }}>
@@ -49,9 +49,9 @@ const ContactPage = () => {
 
       <section className="tight">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 60 }} className="contact-grid">
-            <form onSubmit={submit} className="card" style={{ padding: 40 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 'clamp(24px, 5vw, 60px)' }} className="contact-grid">
+            <form onSubmit={submit} className="card" style={{ padding: 'clamp(20px, 4vw, 40px)' }}>
+              <div className="form-row-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 <label className={`field ${errors.name ? 'error' : ''}`}>
                   <span>Your Name *</span>
                   <input className="input" value={form.name} onChange={e => set('name', e.target.value)} placeholder="Jane Doe" />
@@ -67,7 +67,7 @@ const ContactPage = () => {
                 <span>Business Name</span>
                 <input className="input" value={form.business} onChange={e => set('business', e.target.value)} placeholder="Maple & Birch Bakery" />
               </label>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="form-row-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 <label className="field">
                   <span>Service</span>
                   <select className="input" value={form.service} onChange={e => set('service', e.target.value)}>
@@ -122,7 +122,10 @@ const ContactPage = () => {
               </div>
             </div>
           </div>
-          <style>{`@media(max-width:860px){.contact-grid{grid-template-columns:1fr !important;}}`}</style>
+          <style>{`
+            @media(max-width:860px){.contact-grid{grid-template-columns:1fr !important;}}
+            @media(max-width:540px){.form-row-split{grid-template-columns:1fr !important;}}
+          `}</style>
         </div>
       </section>
     </div>

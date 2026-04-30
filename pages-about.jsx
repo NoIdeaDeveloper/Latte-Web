@@ -44,7 +44,7 @@ const AboutPage = () => (
           ].map((v, i) => (
             <div key={i}>
               <div className="serif" style={{ fontSize: 'clamp(30px, 3.5vw, 36px)', color: 'var(--caramel)', lineHeight: 1, marginBottom: 12 }}>{(i+1).toString().padStart(2, '0')}</div>
-              <h3 className="serif" style={{ fontSize: 24, marginBottom: 10 }}>{v.t}</h3>
+              <h3 className="serif" style={{ fontSize: 'clamp(20px, 2.2vw, 24px)', marginBottom: 10 }}>{v.t}</h3>
               <p style={{ color: 'var(--espresso-2)', fontSize: 15 }}>{v.d}</p>
             </div>
           ))}

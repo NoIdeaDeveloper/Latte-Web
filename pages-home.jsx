@@ -93,7 +93,7 @@ const HomePage = () => {
             ].map((b, i) => (
               <div key={i} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <div className="mono" style={{ color: 'var(--caramel-deep)', marginBottom: 16 }}>0{i+1} / {b.sub}</div>
-                <h3 className="serif" style={{ fontSize: 32, marginBottom: 8 }}>{b.name}</h3>
+                <h3 className="serif" style={{ fontSize: 'clamp(24px, 2.8vw, 32px)', marginBottom: 8 }}>{b.name}</h3>
                 <p style={{ color: 'var(--espresso-2)', fontSize: 15, marginBottom: 24, flex: 1 }}>{b.desc}</p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px dashed var(--line-strong)', paddingTop: 16 }}>
                   <span className="mono" style={{ color: 'var(--muted)', fontSize: 11 }}>{b.notes}</span>
@@ -150,7 +150,7 @@ const HomePage = () => {
             ].map((p, i) => (
               <div key={i}>
                 <div className="serif" style={{ fontSize: 'clamp(44px, 5vw, 56px)', color: 'var(--caramel)', marginBottom: 12, lineHeight: 1 }}>{p.step}</div>
-                <h3 className="serif" style={{ fontSize: 24, marginBottom: 10 }}>{p.title}</h3>
+                <h3 className="serif" style={{ fontSize: 'clamp(20px, 2.2vw, 26px)', marginBottom: 10 }}>{p.title}</h3>
                 <p style={{ color: 'var(--espresso-2)', fontSize: 15 }}>{p.desc}</p>
               </div>
             ))}

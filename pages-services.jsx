@@ -179,7 +179,7 @@ const PricingPage = () => {
       <section className="tight">
         <div className="container">
           <span className="eyebrow">Add-ons</span>
-          <h2 className="serif" style={{ marginTop: 16, marginBottom: 40 }}>Extras, <em style={{ color: 'var(--caramel-deep)' }}>à la carte</em>.</h2>
+          <h2 className="serif" style={{ marginTop: 16, marginBottom: 'clamp(28px, 4vw, 40px)' }}>Extras, <em style={{ color: 'var(--caramel-deep)' }}>à la carte</em>.</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
             {[
               { name: 'Branding', desc: 'Logo & brand identity', price: '+ $800' },
@@ -189,7 +189,7 @@ const PricingPage = () => {
               { name: 'Rush Edits', desc: 'Same-day urgent edits', price: '+ $75' },
               { name: 'SEO Audit', desc: 'Site audit & report', price: '+ $350' },
             ].map((a, i) => (
-              <div key={i} style={{ padding: 24, background: 'var(--foam)', borderRadius: 14, border: '1px solid var(--line)' }}>
+              <div key={i} style={{ padding: 'clamp(16px, 2.5vw, 24px)', background: 'var(--foam)', borderRadius: 14, border: '1px solid var(--line)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
                   <h4 className="serif" style={{ fontSize: 22 }}>{a.name}</h4>
                   <span className="mono" style={{ color: 'var(--caramel-deep)' }}>{a.price}</span>
