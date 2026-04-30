@@ -146,3 +146,28 @@ const Footer = () => (
 );
 
 Object.assign(window, { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS });
+
+// ── Scroll-reveal engine ─────────────────────────────────────────────────────
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
+    }),
+    { threshold: 0.07, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  function observe() {
+    document.querySelectorAll('.reveal:not(.revealed), .reveal-stagger:not(.revealed)')
+      .forEach(el => io.observe(el));
+  }
+
+  // Initial pass after React's first render
+  setTimeout(observe, 0);
+
+  // Re-scan after every route change (React re-renders main on hashchange)
+  window.addEventListener('hashchange', () =>
+    requestAnimationFrame(() => requestAnimationFrame(observe))
+  );
+}());

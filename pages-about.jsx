@@ -16,7 +16,7 @@ const AboutPage = () => (
       </div>
     </section>
 
-    <section className="tight">
+    <section className="tight reveal">
       <div className="container">
         <div className="grid-split">
           <div className="placeholder-img" style={{ aspectRatio: '4/5', minHeight: 0 }}>FOUNDER PORTRAIT</div>
@@ -31,11 +31,11 @@ const AboutPage = () => (
       </div>
     </section>
 
-    <section style={{ background: 'var(--foam)' }}>
+    <section className="reveal" style={{ background: 'var(--foam)' }}>
       <div className="container">
         <span className="eyebrow">Our Values</span>
         <h2 className="serif" style={{ marginTop: 12, marginBottom: 'clamp(36px, 5vw, 56px)' }}>What we <em style={{ color: 'var(--caramel-deep)' }}>stand</em> for.</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 'clamp(24px, 3vw, 32px)' }}>
+        <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 'clamp(24px, 3vw, 32px)' }}>
           {[
             { t: 'Craft over speed', d: 'A site we ship in three weeks beats one we slap together in three days.' },
             { t: 'Small on purpose', d: 'A handful of clients each season. You get a real human, not a project manager.' },

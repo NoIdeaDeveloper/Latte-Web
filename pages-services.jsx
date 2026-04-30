@@ -37,7 +37,7 @@ const ServicesPage = () => (
         from: '$15 CAD/month',
       },
     ].map((s, i) => (
-      <section key={i} style={{ padding: 'clamp(48px, 7vw, 60px) 0', background: i % 2 === 1 ? 'var(--foam)' : 'transparent' }}>
+      <section key={i} className="reveal" style={{ padding: 'clamp(48px, 7vw, 60px) 0', background: i % 2 === 1 ? 'var(--foam)' : 'transparent' }}>
         <div className="container">
           <div className="grid-split">
             <div>
@@ -67,7 +67,7 @@ const ServicesPage = () => (
       </section>
     ))}
 
-    <section className="tight">
+    <section className="tight reveal">
       <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="serif" style={{ marginBottom: 20 }}>Bundle and <em style={{ color: 'var(--caramel-deep)' }}>save</em>.</h2>
         <p style={{ fontSize: 'clamp(16px, 1.5vw, 18px)', color: 'var(--espresso-2)', maxWidth: 600, margin: '0 auto 28px' }}>
@@ -135,7 +135,7 @@ const PricingPage = () => {
 
       <section className="tight">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(16px, 2vw, 20px)' }}>
+          <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(16px, 2vw, 20px)' }}>
             {plans.map((p, i) => (
               <div key={i} className="card" style={{
                 position: 'relative',
@@ -176,11 +176,11 @@ const PricingPage = () => {
       </section>
 
       {/* Add-ons */}
-      <section className="tight">
+      <section className="tight reveal">
         <div className="container">
           <span className="eyebrow">Add-ons</span>
           <h2 className="serif" style={{ marginTop: 16, marginBottom: 'clamp(28px, 4vw, 40px)' }}>Extras, <em style={{ color: 'var(--caramel-deep)' }}>à la carte</em>.</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
+          <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
             {[
               { name: 'Branding', desc: 'Logo & brand identity', price: '+ $800' },
               { name: 'E-commerce', desc: 'Online store setup', price: '+ $1,200' },

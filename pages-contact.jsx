@@ -47,7 +47,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-      <section className="tight">
+      <section className="tight reveal">
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 'clamp(24px, 5vw, 60px)' }} className="contact-grid">
             <form onSubmit={submit} className="card" style={{ padding: 'clamp(20px, 4vw, 40px)' }}>

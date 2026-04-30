@@ -17,7 +17,7 @@ const BlogPage = () => {
           <p style={{ fontSize: 'clamp(16px, 1.5vw, 20px)', color: 'var(--espresso-2)', maxWidth: 640 }}>What we're learning, what we're shipping, and the occasional rant about web fonts.</p>
         </div>
       </section>
-      <section className="tight">
+      <section className="tight reveal">
         <div className="container">
           <a href="#" style={{ display: 'block', marginBottom: 'clamp(40px, 6vw, 60px)' }}>
             <div className="grid-split center" style={{ gap: 'clamp(28px, 4vw, 48px)' }}>
@@ -31,7 +31,7 @@ const BlogPage = () => {
               </div>
             </div>
           </a>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(24px, 3vw, 32px)' }}>
+          <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(24px, 3vw, 32px)' }}>
             {posts.slice(1).map((p, i) => (
               <a href="#" key={i} style={{ display: 'block' }}>
                 <div className="card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>

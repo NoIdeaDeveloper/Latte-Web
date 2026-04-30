@@ -19,7 +19,7 @@ const FAQPage = () => {
           <h1 className="serif" style={{ marginTop: 16, marginBottom: 24 }}>Common <em style={{ color: 'var(--caramel-deep)' }}>questions</em>.</h1>
         </div>
       </section>
-      <section className="tight">
+      <section className="tight reveal">
         <div className="container" style={{ maxWidth: 880 }}>
           {items.map((it, i) => (
             <div key={i} style={{ borderTop: i === 0 ? '1px solid var(--line-strong)' : 'none', borderBottom: '1px solid var(--line-strong)' }}>
@@ -37,7 +37,7 @@ const FAQPage = () => {
           ))}
         </div>
       </section>
-      <section className="tight">
+      <section className="tight reveal">
         <div className="container" style={{ textAlign: 'center' }}>
           <h3 className="serif" style={{ marginBottom: 16 }}>Still curious?</h3>
           <p style={{ color: 'var(--muted)', marginBottom: 24 }}>We're happy to chat — no pressure, no sales pitch.</p>

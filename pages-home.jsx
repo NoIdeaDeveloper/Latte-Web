@@ -51,7 +51,7 @@ const HomePage = () => {
       </section>
 
       {/* MARQUEE */}
-      <div className="marquee">
+      <div className="marquee reveal">
         <div className="marquee-track">
           {[...Array(2)].map((_, i) => (
             <React.Fragment key={i}>
@@ -85,7 +85,7 @@ const HomePage = () => {
             <a href="#/services" className="btn btn-ghost">All services →</a>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(16px, 2vw, 20px)' }}>
+          <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(16px, 2vw, 20px)' }}>
             {[
               { name: 'Web Design', sub: 'Design & Development', desc: 'Custom-designed websites built from scratch. Every pixel handcrafted to your brand — no templates, no page builders.', from: '$2,400', notes: 'Strategy · Design · Build' },
               { name: 'Site Management', sub: 'Maintenance & Care', desc: 'Updates, backups, security, content edits — all the maintenance handled for you, every month, in the background.', from: '$95/mo', notes: 'Updates · Edits · Reports' },
@@ -106,7 +106,7 @@ const HomePage = () => {
       </section>
 
       {/* THE STORY (dialed back) */}
-      <section style={{ background: 'var(--espresso)', color: 'var(--cream)', padding: 'clamp(80px, 12vw, 120px) 0', position: 'relative', overflow: 'hidden' }}>
+      <section className="reveal" style={{ background: 'var(--espresso)', color: 'var(--cream)', padding: 'clamp(80px, 12vw, 120px) 0', position: 'relative', overflow: 'hidden' }}>
         <div className="container">
           <div className="grid-split center">
             <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -141,7 +141,7 @@ const HomePage = () => {
             From kickoff to <em style={{ color: 'var(--caramel-deep)' }}>launch</em>.
           </h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 'clamp(24px, 3vw, 32px)' }}>
+          <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 'clamp(24px, 3vw, 32px)' }}>
             {[
               { step: '01', title: 'Discovery', desc: 'We sit down to learn about your business, customers, and goals — what works, what doesn\'t, what\'s next.' },
               { step: '02', title: 'Strategy', desc: 'Sitemap, wireframes, content plan. We map out every detail before we touch a pixel.' },
@@ -159,7 +159,7 @@ const HomePage = () => {
       </section>
 
       {/* TESTIMONIAL */}
-      <section className="tight">
+      <section className="tight reveal">
         <div className="container">
           <div style={{ background: 'var(--foam)', borderRadius: 24, padding: 'clamp(32px, 6vw, 80px)', border: '1px solid var(--line)', position: 'relative' }}>
             <div className="serif" style={{ fontSize: 'clamp(72px, 10vw, 120px)', color: 'var(--caramel)', lineHeight: 0.6, position: 'absolute', top: 'clamp(28px, 4vw, 40px)', left: 'clamp(20px, 3vw, 32px)', opacity: 0.4 }}>"</div>
@@ -179,7 +179,7 @@ const HomePage = () => {
       </section>
 
       {/* CTA */}
-      <section className="tight">
+      <section className="tight reveal">
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: 760, margin: '0 auto' }}>
             <h2 className="serif" style={{ marginBottom: 24 }}>
