@@ -1,7 +1,7 @@
 // pages-privacy.jsx
 const PrivacyPage = () => (
   <div className="page-fade">
-    <section style={{ padding: 'clamp(56px, 8vw, 80px) 0 clamp(32px, 5vw, 40px)' }}>
+    <section className="section-hero">
       <div className="container">
         <span className="eyebrow">Privacy Policy</span>
         <h1 className="serif" style={{ marginTop: 16, marginBottom: 32, maxWidth: 800 }}>
@@ -33,4 +33,4 @@ const PrivacyPage = () => (
     </section>
   </div>
 );
-window.PrivacyPage = PrivacyPage;
+export { PrivacyPage };

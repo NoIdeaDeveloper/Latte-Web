@@ -165,7 +165,7 @@ const Footer = () => (
   </footer>
 );
 
-Object.assign(window, { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS });
+export { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS };
 
 // ── Scroll-reveal engine ─────────────────────────────────────────────────────
 (function () {

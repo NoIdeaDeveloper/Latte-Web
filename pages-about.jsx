@@ -2,7 +2,7 @@
 
 const AboutPage = () => (
   <div className="page-fade">
-    <section style={{ padding: 'clamp(56px, 8vw, 80px) 0 clamp(32px, 5vw, 40px)' }}>
+    <section className="section-hero">
       <div className="container">
         <span className="canadian-badge" style={{ marginBottom: 24 }}>
           <MapleLeaf size={12} color="var(--maple)" /> Canadian Owned & Operated
@@ -23,9 +23,9 @@ const AboutPage = () => (
           <div>
             <span className="eyebrow">The Story</span>
             <h2 className="serif" style={{ marginTop: 16, marginBottom: 20 }}>Why Latte exists.</h2>
-            <p style={{ fontSize: 'clamp(15px, 1.4vw, 17px)', color: 'var(--espresso-2)', lineHeight: 1.7, marginBottom: 16 }}>The name comes from a simple observation. You can buy the beans, buy the machine, and pull a latte at home — but it never quite tastes the same as one made by a professional. The little decisions add up.</p>
-            <p style={{ fontSize: 'clamp(15px, 1.4vw, 17px)', color: 'var(--espresso-2)', lineHeight: 1.7, marginBottom: 16 }}>Websites work the same way. You can buy a builder. You can buy a template. You can technically do it yourself. But the result rarely matches what a professional team can build for you.</p>
-            <p style={{ fontSize: 'clamp(15px, 1.4vw, 17px)', color: 'var(--espresso-2)', lineHeight: 1.7 }}>Latte is built around that idea — a small, careful studio that handles the design, the build, the hosting, and the ongoing care, so your site always represents you well.</p>
+            <p className="body-md" style={{ marginBottom: 16 }}>The name comes from a simple observation. You can buy the beans, buy the machine, and pull a latte at home — but it never quite tastes the same as one made by a professional. The little decisions add up.</p>
+            <p className="body-md" style={{ marginBottom: 16 }}>Websites work the same way. You can buy a builder. You can buy a template. You can technically do it yourself. But the result rarely matches what a professional team can build for you.</p>
+            <p className="body-md">Latte is built around that idea — a small, careful studio that handles the design, the build, the hosting, and the ongoing care, so your site always represents you well.</p>
           </div>
         </div>
       </div>
@@ -54,4 +54,4 @@ const AboutPage = () => (
   </div>
 );
 
-window.AboutPage = AboutPage;
+export { AboutPage };

@@ -15,7 +15,7 @@ const HomePage = () => {
                 Websites done&nbsp;<em style={{ fontStyle: 'italic', color: 'var(--caramel-deep)' }}>right</em>.<br/>
                 Without the headache.
               </h1>
-              <p style={{ fontSize: 'clamp(17px, 1.6vw, 20px)', maxWidth: 560, color: 'var(--espresso-2)', marginBottom: 36, lineHeight: 1.55 }}>
+              <p className="body-lg" style={{ maxWidth: 560, marginBottom: 36 }}>
                 Latte is a small Canadian studio that designs, builds, and looks after websites for small businesses — Canadian-owned from domain to deployment. One team, one invoice, no hand-offs — pull up a chair, your site stays fast, current, and effortless.
               </p>
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -85,7 +85,7 @@ const HomePage = () => {
             <a href="#/services" className="btn btn-ghost">All services →</a>
           </div>
 
-          <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(16px, 2vw, 20px)' }}>
+          <div className="reveal-stagger grid-auto-260">
             {[
               { name: 'Web Design', sub: 'Design & Development', desc: 'Custom-designed websites built from scratch. Every pixel handcrafted to your brand — no templates, no page builders.', from: '$2,400', notes: 'Strategy · Design · Build' },
               { name: 'Site Management', sub: 'Maintenance & Care', desc: 'Updates, backups, security, content edits — all the maintenance handled for you, every month, in the background.', from: '$95/mo', notes: 'Updates · Edits · Reports' },
@@ -106,7 +106,7 @@ const HomePage = () => {
       </section>
 
       {/* THE STORY (dialed back) */}
-      <section className="reveal" style={{ background: 'var(--espresso)', color: 'var(--cream)', padding: 'clamp(80px, 12vw, 120px) 0', position: 'relative', overflow: 'hidden' }}>
+      <section className="reveal section-dark">
         <div className="container">
           <div className="grid-split center">
             <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -141,7 +141,7 @@ const HomePage = () => {
             From kickoff to <em style={{ color: 'var(--caramel-deep)' }}>launch</em>.
           </h2>
 
-          <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 'clamp(24px, 3vw, 32px)' }}>
+          <div className="reveal-stagger grid-auto-220">
             {[
               { step: '01', title: 'Discovery', desc: 'We sit down to learn about your business, customers, and goals — what works, what doesn\'t, what\'s next.' },
               { step: '02', title: 'Strategy', desc: 'Sitemap, wireframes, content plan. We map out every detail before we touch a pixel.' },
@@ -196,4 +196,4 @@ const HomePage = () => {
   );
 };
 
-window.HomePage = HomePage;
+export { HomePage };

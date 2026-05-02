@@ -10,7 +10,7 @@ const BlogPage = () => {
   ];
   return (
     <div className="page-fade">
-      <section style={{ padding: 'clamp(56px, 8vw, 80px) 0 clamp(32px, 5vw, 40px)' }}>
+      <section className="section-hero">
         <div className="container">
           <span className="eyebrow">The Journal</span>
           <h1 className="serif" style={{ marginTop: 16, marginBottom: 24 }}>Notes & <em style={{ color: 'var(--caramel-deep)' }}>insights</em>.</h1>
@@ -49,4 +49,4 @@ const BlogPage = () => {
     </div>
   );
 };
-window.BlogPage = BlogPage;
+export { BlogPage };

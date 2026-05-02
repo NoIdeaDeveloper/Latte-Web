@@ -2,7 +2,7 @@
 
 const ServicesPage = () => (
   <div className="page-fade">
-    <section style={{ padding: 'clamp(56px, 8vw, 80px) 0 clamp(32px, 5vw, 40px)' }}>
+    <section className="section-hero">
       <div className="container">
         <span className="eyebrow">Our Services</span>
         <h1 className="serif" style={{ marginTop: 16, marginBottom: 24 }}>
@@ -104,7 +104,7 @@ const PricingPage = () => {
 
   return (
     <div className="page-fade">
-      <section style={{ padding: 'clamp(56px, 8vw, 80px) 0 clamp(32px, 5vw, 40px)' }}>
+      <section className="section-hero">
         <div className="container" style={{ textAlign: 'center' }}>
           <span className="eyebrow">Pricing</span>
           <h1 className="serif" style={{ marginTop: 16, marginBottom: 24 }}>
@@ -135,7 +135,7 @@ const PricingPage = () => {
 
       <section className="tight">
         <div className="container">
-          <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(16px, 2vw, 20px)' }}>
+          <div className="reveal-stagger grid-auto-260">
             {plans.map((p, i) => (
               <div key={i} className="card" style={{
                 position: 'relative',
@@ -204,4 +204,4 @@ const PricingPage = () => {
   );
 };
 
-Object.assign(window, { ServicesPage, PricingPage });
+export { ServicesPage, PricingPage };

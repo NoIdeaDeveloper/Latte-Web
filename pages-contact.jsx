@@ -133,4 +133,4 @@ const ContactPage = () => {
     </div>
   );
 };
-window.ContactPage = ContactPage;
+export { ContactPage };

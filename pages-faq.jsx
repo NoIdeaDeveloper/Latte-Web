@@ -13,7 +13,7 @@ const FAQPage = () => {
   ];
   return (
     <div className="page-fade">
-      <section style={{ padding: 'clamp(56px, 8vw, 80px) 0 clamp(32px, 5vw, 40px)' }}>
+      <section className="section-hero">
         <div className="container">
           <span className="eyebrow">FAQ</span>
           <h1 className="serif" style={{ marginTop: 16, marginBottom: 24 }}>Common <em style={{ color: 'var(--caramel-deep)' }}>questions</em>.</h1>
@@ -44,9 +44,11 @@ const FAQPage = () => {
                   id={panelId}
                   role="region"
                   aria-labelledby={btnId}
-                  style={{ maxHeight: isOpen ? 500 : 0, overflow: 'hidden', transition: 'max-height 0.3s ease' }}
+                  style={{ display: 'grid', gridTemplateRows: isOpen ? '1fr' : '0fr', transition: 'grid-template-rows 0.28s cubic-bezier(0.16, 1, 0.3, 1)' }}
                 >
-                  <p style={{ paddingTop: 4, paddingBottom: 24, color: 'var(--espresso-2)', fontSize: 'clamp(15px, 1.4vw, 16px)', maxWidth: 720, lineHeight: 1.7 }}>{it.a}</p>
+                  <div style={{ overflow: 'hidden' }}>
+                    <p style={{ paddingTop: 4, paddingBottom: 24, color: 'var(--espresso-2)', fontSize: 'clamp(15px, 1.4vw, 16px)', maxWidth: 720, lineHeight: 1.7 }}>{it.a}</p>
+                  </div>
                 </div>
               </div>
             );
@@ -63,4 +65,4 @@ const FAQPage = () => {
     </div>
   );
 };
-window.FAQPage = FAQPage;
+export { FAQPage };
