@@ -144,6 +144,7 @@ const Footer = () => (
             <li><a href="#/blog">Journal</a></li>
             <li><a href="#/faq">FAQ</a></li>
             <li><a href="#/contact">Contact</a></li>
+            <li><a href="#/privacy">Privacy</a></li>
           </ul>
         </div>
         <div>
