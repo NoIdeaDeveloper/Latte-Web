@@ -194,6 +194,3 @@ Object.assign(window, { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS });
     requestAnimationFrame(() => requestAnimationFrame(observe))
   );
 }());
-AnimationFrame(observe))
-  );
-}());
