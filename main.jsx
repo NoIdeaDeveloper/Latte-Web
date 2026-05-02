@@ -1,5 +1,5 @@
 import { useTweaks, TweaksPanel, TweakSection, TweakSelect, TweakButton } from './tweaks-panel.jsx';
-import { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS } from './shared.jsx';
+import { Logo, Nav, Footer } from './shared.jsx';
 import { HomePage } from './pages-home.jsx';
 import { ServicesPage, PricingPage } from './pages-services.jsx';
 import { AboutPage } from './pages-about.jsx';
