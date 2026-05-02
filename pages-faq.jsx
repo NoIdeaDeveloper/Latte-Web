@@ -2,7 +2,7 @@
 const FAQPage = () => {
   const [open, setOpen] = React.useState(0);
   const items = [
-    { q: 'How long does a new website take?', a: 'Most projects take 3–5 weeks from kickoff to launch. We move quickly, but never rush the parts that matter — strategy, design, and content. We give you a firm timeline at the start.' },
+    { q: 'How long does a new website take?', a: 'Most projects take 3–5 weeks, from concept to launch, freshly brewed. We move quickly, but never rush the parts that matter — strategy, design, and content. We give you a firm timeline at the start.' },
     { q: 'Do I own the site when it\'s done?', a: 'Yes — every line of code, every design file, every account. We don\'t hold sites hostage. If you ever leave Latte, you take everything with you.' },
     { q: 'Can you redesign my existing site?', a: 'Absolutely. About a third of our work is redesigns. We\'ll audit what\'s working, what isn\'t, and rebuild it with care. Migration included.' },
     { q: 'Why Canadian hosting?', a: 'Speed (your customers are mostly in Canada), data residency (Canadian data stays under Canadian law), and we believe in keeping infrastructure spending in our own economy.' },
