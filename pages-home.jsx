@@ -1,5 +1,7 @@
 // pages-home.jsx — Home page
 
+import { MapleLeaf } from './shared.jsx';
+
 const HomePage = () => {
   return (
     <div className="page-fade">

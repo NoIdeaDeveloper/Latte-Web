@@ -1,4 +1,7 @@
 // pages-contact.jsx
+
+import { MapleLeaf } from './shared.jsx';
+
 const ContactPage = () => {
   const [form, setForm] = React.useState({ name: '', email: '', business: '', service: 'design', budget: '2-5k', message: '' });
   const [errors, setErrors] = React.useState({});

@@ -1,4 +1,6 @@
-// pages-misc.jsx — About, FAQ, Blog, Contact
+// pages-about.jsx — About page
+
+import { MapleLeaf } from './shared.jsx';
 
 const AboutPage = () => (
   <div className="page-fade">
