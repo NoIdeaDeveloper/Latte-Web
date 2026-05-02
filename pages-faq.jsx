@@ -21,20 +21,36 @@ const FAQPage = () => {
       </section>
       <section className="tight reveal">
         <div className="container" style={{ maxWidth: 880 }}>
-          {items.map((it, i) => (
-            <div key={i} style={{ borderTop: i === 0 ? '1px solid var(--line-strong)' : 'none', borderBottom: '1px solid var(--line-strong)' }}>
-              <button onClick={() => setOpen(open === i ? -1 : i)} style={{ width: '100%', padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'transparent', border: 'none', textAlign: 'left', fontFamily: 'var(--serif)', fontSize: 'clamp(18px, 2vw, 26px)', color: 'var(--espresso)', gap: 16 }}>
-                <span style={{ display: 'flex', gap: 'clamp(12px, 2vw, 20px)', alignItems: 'baseline', flex: 1, minWidth: 0 }}>
-                  <span className="mono" style={{ fontSize: 12, color: 'var(--caramel-deep)', flexShrink: 0 }}>0{i+1}</span>
-                  <span style={{ flex: 1 }}>{it.q}</span>
-                </span>
-                <span style={{ fontSize: 24, color: 'var(--caramel-deep)', flexShrink: 0, transform: open === i ? 'rotate(45deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>+</span>
-              </button>
-              <div style={{ maxHeight: open === i ? 500 : 0, overflow: 'hidden', transition: 'max-height 0.3s ease' }}>
-                <p style={{ paddingTop: 4, paddingBottom: 24, color: 'var(--espresso-2)', fontSize: 'clamp(15px, 1.4vw, 16px)', maxWidth: 720, lineHeight: 1.7 }}>{it.a}</p>
+          {items.map((it, i) => {
+            const isOpen = open === i;
+            const btnId = `faq-btn-${i}`;
+            const panelId = `faq-panel-${i}`;
+            return (
+              <div key={i} style={{ borderTop: i === 0 ? '1px solid var(--line-strong)' : 'none', borderBottom: '1px solid var(--line-strong)' }}>
+                <button
+                  id={btnId}
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  style={{ width: '100%', padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'transparent', border: 'none', textAlign: 'left', fontFamily: 'var(--serif)', fontSize: 'clamp(18px, 2vw, 26px)', color: 'var(--espresso)', gap: 16 }}
+                >
+                  <span style={{ display: 'flex', gap: 'clamp(12px, 2vw, 20px)', alignItems: 'baseline', flex: 1, minWidth: 0 }}>
+                    <span className="mono" style={{ fontSize: 12, color: 'var(--caramel-deep)', flexShrink: 0 }} aria-hidden="true">0{i+1}</span>
+                    <span style={{ flex: 1 }}>{it.q}</span>
+                  </span>
+                  <span aria-hidden="true" style={{ fontSize: 24, color: 'var(--caramel-deep)', flexShrink: 0, transform: isOpen ? 'rotate(45deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>+</span>
+                </button>
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={btnId}
+                  style={{ maxHeight: isOpen ? 500 : 0, overflow: 'hidden', transition: 'max-height 0.3s ease' }}
+                >
+                  <p style={{ paddingTop: 4, paddingBottom: 24, color: 'var(--espresso-2)', fontSize: 'clamp(15px, 1.4vw, 16px)', maxWidth: 720, lineHeight: 1.7 }}>{it.a}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
       <section className="tight reveal">

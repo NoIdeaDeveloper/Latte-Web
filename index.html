@@ -80,6 +80,11 @@
         }
       }, [tweaks.palette]);
 
+      const mainRef = React.useRef(null);
+      React.useEffect(() => {
+        if (mainRef.current) mainRef.current.focus();
+      }, [route]);
+
       let Page;
       switch (route) {
         case 'services': Page = ServicesPage; break;
@@ -94,7 +99,7 @@
       return (
         <>
           <Nav route={route} />
-          <main key={route}><Page /></main>
+          <main key={route} id="main-content" tabIndex="-1" ref={mainRef} style={{ outline: 'none' }}><Page /></main>
           <Footer />
           <TweaksPanel title="Latte Tweaks">
             <TweakSection label="Brand" />

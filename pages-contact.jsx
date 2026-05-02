@@ -3,6 +3,7 @@ const ContactPage = () => {
   const [form, setForm] = React.useState({ name: '', email: '', business: '', service: 'design', budget: '2-5k', message: '' });
   const [errors, setErrors] = React.useState({});
   const [sent, setSent] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
 
@@ -13,7 +14,10 @@ const ContactPage = () => {
     if (!form.email.trim() || !/.+@.+\..+/.test(form.email)) errs.email = 'Valid email needed';
     if (!form.message.trim() || form.message.length < 10) errs.message = 'Tell us a bit more';
     setErrors(errs);
-    if (Object.keys(errs).length === 0) setSent(true);
+    if (Object.keys(errs).length === 0) {
+      setIsSubmitting(true);
+      setTimeout(() => { setIsSubmitting(false); setSent(true); }, 800);
+    }
   };
 
   if (sent) {
@@ -49,25 +53,25 @@ const ContactPage = () => {
 
       <section className="tight reveal">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 'clamp(24px, 5vw, 60px)' }} className="contact-grid">
+          <div className="contact-grid">
             <form onSubmit={submit} className="card" style={{ padding: 'clamp(20px, 4vw, 40px)' }}>
-              <div className="form-row-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="form-row-split">
                 <label className={`field ${errors.name ? 'error' : ''}`}>
                   <span>Your Name *</span>
-                  <input className="input" value={form.name} onChange={e => set('name', e.target.value)} placeholder="Jane Doe" />
-                  {errors.name && <span className="err-msg">{errors.name}</span>}
+                  <input className="input" value={form.name} onChange={e => set('name', e.target.value)} placeholder="Jane Doe" aria-required="true" aria-describedby={errors.name ? 'err-name' : undefined} />
+                  {errors.name && <span id="err-name" className="err-msg" role="alert">{errors.name}</span>}
                 </label>
                 <label className={`field ${errors.email ? 'error' : ''}`}>
                   <span>Email *</span>
-                  <input className="input" type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="you@business.ca" />
-                  {errors.email && <span className="err-msg">{errors.email}</span>}
+                  <input className="input" type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="you@business.ca" aria-required="true" aria-describedby={errors.email ? 'err-email' : undefined} />
+                  {errors.email && <span id="err-email" className="err-msg" role="alert">{errors.email}</span>}
                 </label>
               </div>
               <label className="field">
                 <span>Business Name</span>
                 <input className="input" value={form.business} onChange={e => set('business', e.target.value)} placeholder="Maple & Birch Bakery" />
               </label>
-              <div className="form-row-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="form-row-split">
                 <label className="field">
                   <span>Service</span>
                   <select className="input" value={form.service} onChange={e => set('service', e.target.value)}>
@@ -91,10 +95,12 @@ const ContactPage = () => {
               </div>
               <label className={`field ${errors.message ? 'error' : ''}`}>
                 <span>What are you looking for? *</span>
-                <textarea className="textarea" value={form.message} onChange={e => set('message', e.target.value)} placeholder="A few sentences about your business, your goals, and what you're hoping a new website will do for you..." />
-                {errors.message && <span className="err-msg">{errors.message}</span>}
+                <textarea className="textarea" value={form.message} onChange={e => set('message', e.target.value)} placeholder="A few sentences about your business, your goals, and what you're hoping a new website will do for you..." aria-required="true" aria-describedby={errors.message ? 'err-message' : undefined} />
+                {errors.message && <span id="err-message" className="err-msg" role="alert">{errors.message}</span>}
               </label>
-              <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}>Send order →</button>
+              <button type="submit" className="btn btn-primary" disabled={isSubmitting} style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}>
+                {isSubmitting ? 'Sending…' : 'Send order →'}
+              </button>
               <p className="mono" style={{ fontSize: 11, color: 'var(--muted)', textAlign: 'center', marginTop: 16, marginBottom: 0 }}>We respond within 1 business day · No spam, ever</p>
             </form>
 
@@ -122,10 +128,6 @@ const ContactPage = () => {
               </div>
             </div>
           </div>
-          <style>{`
-            @media(max-width:860px){.contact-grid{grid-template-columns:1fr !important;}}
-            @media(max-width:540px){.form-row-split{grid-template-columns:1fr !important;}}
-          `}</style>
         </div>
       </section>
     </div>

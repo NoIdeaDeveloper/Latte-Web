@@ -59,34 +59,53 @@ const NAV_ITEMS = [
 const Nav = ({ route }) => {
   const [open, setOpen] = React.useState(false);
   React.useEffect(() => { setOpen(false); }, [route]);
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <nav className="nav">
         <div className="nav-inner">
           <Logo />
           <div className="nav-links">
-            {NAV_ITEMS.map(item => (
-              <a key={item.href} href={item.href}
-                 className={route === item.href.slice(2) ? 'active' : ''}>
-                {item.label}
-              </a>
-            ))}
+            {NAV_ITEMS.map(item => {
+              const isActive = route === item.href.slice(2);
+              return (
+                <a key={item.href} href={item.href}
+                   className={isActive ? 'active' : ''}
+                   aria-current={isActive ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
           <div className="nav-cta">
             <a href="#/contact" className="btn btn-primary">Order a site →</a>
-            <button className="menu-btn" onClick={() => setOpen(!open)} aria-label="Menu">
+            <button
+              className="menu-btn"
+              onClick={() => setOpen(!open)}
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+            >
               <span />
             </button>
           </div>
         </div>
       </nav>
-      <div className={`mobile-menu ${open ? 'open' : ''}`}>
+      <div id="mobile-menu" className={`mobile-menu ${open ? 'open' : ''}`} aria-hidden={!open}>
         {NAV_ITEMS.map(item => (
-          <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+          <a key={item.href} href={item.href} onClick={() => setOpen(false)}
+             tabIndex={open ? 0 : -1}>
             {item.label}
           </a>
         ))}
         <a href="#/contact" onClick={() => setOpen(false)}
+           tabIndex={open ? 0 : -1}
            style={{ marginTop: 16, color: 'var(--caramel-deep)' }}>
           Order a site →
         </a>
