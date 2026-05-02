@@ -16,7 +16,7 @@ const HomePage = () => {
                 Without the headache.
               </h1>
               <p style={{ fontSize: 'clamp(17px, 1.6vw, 20px)', maxWidth: 560, color: 'var(--espresso-2)', marginBottom: 36, lineHeight: 1.55 }}>
-                Latte is a small Canadian studio that designs, builds, and looks after websites for small businesses. One team, one invoice, no hand-offs — pull up a chair, your site stays fast, current, and effortless.
+                Latte is a small Canadian studio that designs, builds, and looks after websites for small businesses — Canadian-owned from domain to deployment. One team, one invoice, no hand-offs — pull up a chair, your site stays fast, current, and effortless.
               </p>
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                 <a href="#/pricing" className="btn btn-primary">See pricing →</a>
@@ -55,17 +55,17 @@ const HomePage = () => {
         <div className="marquee-track">
           {[...Array(2)].map((_, i) => (
             <React.Fragment key={i}>
-              <span>Designed in Canada</span>
+              <span><em>Built</em> in Canada, end to end</span>
               <span className="dot">●</span>
               <span><em>Hosted</em> on Canadian servers</span>
               <span className="dot">●</span>
-              <span>Maintained monthly</span>
+              <span>Domains from Canadian registrars</span>
               <span className="dot">●</span>
               <span>Hand-coded, never templated</span>
               <span className="dot">●</span>
               <span><em>Real</em> humans, real support</span>
               <span className="dot">●</span>
-              <span>Always up to date</span>
+              <span>Privacy-first, always</span>
               <span className="dot">●</span>
             </React.Fragment>
           ))}

@@ -159,7 +159,7 @@ const Footer = () => (
       </div>
       <div className="footer-bottom">
         <span>© 2026 Latte Web Co. All rights reserved.</span>
-        <span>Brewed with care in Canada 🍁</span>
+        <span>Built in Canada, end to end 🍁</span>
       </div>
     </div>
   </footer>
@@ -192,5 +192,8 @@ Object.assign(window, { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS });
   // Belt-and-suspenders: also re-scan two frames after every hashchange
   window.addEventListener('hashchange', () =>
     requestAnimationFrame(() => requestAnimationFrame(observe))
+  );
+}());
+AnimationFrame(observe))
   );
 }());

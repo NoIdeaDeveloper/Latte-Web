@@ -32,7 +32,7 @@ const ServicesPage = () => (
       {
         num: '03', name: 'Hosting', sub: 'Fast, Canadian, Managed',
         tagline: 'Where your site lives. And how fast it runs.',
-        desc: 'Premium Canadian hosting on green-powered, SSD-backed servers — with a global CDN, free SSL, and the kind of uptime that keeps customers from bouncing. Yes, we manage it for you. No, you\'ll never see a control panel.',
+        desc: 'Your site lives on Canadian-owned, renewable-powered servers. Domains registered through Canadian-owned registrars. When we need services beyond our borders, we choose privacy-respecting operators. No data mining, no hidden tracking — just fast, reliable hosting that keeps your data where it belongs.',
         includes: ['Toronto & Montreal data centres', 'Global CDN (200+ locations)', 'Free SSL certificates', 'Daily backups, kept for 30 days', '99.9% uptime SLA', 'No surprise overage fees', '100% renewable-powered'],
         from: '$15 CAD/month',
       },

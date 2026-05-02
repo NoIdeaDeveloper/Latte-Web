@@ -39,7 +39,7 @@ const AboutPage = () => (
           {[
             { t: 'Craft over speed', d: 'A site we ship in three weeks beats one we slap together in three days.' },
             { t: 'Small on purpose', d: 'A handful of clients each season. You get a real human, not a project manager.' },
-            { t: 'Canadian, end to end', d: 'Owned, run, and hosted in Canada. Your data stays here. Your dollars too.' },
+            { t: 'Canadian, end to end', d: 'We go further than most. Domains from Canadian registrars. Sites hosted on Canadian-owned servers. When Canadian options don\'t exist, we choose privacy-focused providers, never the data-hungry defaults. Your data stays here. Your dollars do too.' },
             { t: 'Honest pricing', d: 'One quote. No surprise hours, no scope-creep invoices, no upsells.' },
           ].map((v, i) => (
             <div key={i}>
