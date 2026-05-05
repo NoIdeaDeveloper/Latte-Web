@@ -12,7 +12,7 @@ const FAQPage = () => {
     { q: 'Do you work with clients outside Canada?', a: 'We do. About 30% of our clients are in the US, UK, and EU. We\'re Canadian-based, so timing works best with North American hours.' },
   ];
   return (
-    <div className="page-fade">
+    <div className="page-enter">
       <section className="section-hero">
         <div className="container">
           <span className="eyebrow">FAQ</span>

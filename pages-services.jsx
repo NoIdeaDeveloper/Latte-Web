@@ -1,7 +1,8 @@
 // pages-services.jsx — Services + Pricing pages
+import { TiltCard } from './shared.jsx';
 
 const ServicesPage = () => (
-  <div className="page-fade">
+  <div className="page-enter">
     <section className="section-hero">
       <div className="container">
         <span className="eyebrow">Our Services</span>
@@ -103,7 +104,7 @@ const PricingPage = () => {
   ];
 
   return (
-    <div className="page-fade">
+    <div className="page-enter">
       <section className="section-hero">
         <div className="container" style={{ textAlign: 'center' }}>
           <span className="eyebrow">Pricing</span>
@@ -137,7 +138,7 @@ const PricingPage = () => {
         <div className="container">
           <div className="reveal-stagger grid-auto-260">
             {plans.map((p, i) => (
-              <div key={i} className="card" style={{
+              <TiltCard key={i} className="card" style={{
                 position: 'relative',
                 background: p.popular ? 'var(--espresso)' : 'var(--foam)',
                 color: p.popular ? 'var(--cream)' : 'var(--ink)',
@@ -164,7 +165,7 @@ const PricingPage = () => {
                   ))}
                 </ul>
                 <a href="#/contact" className={p.popular ? 'btn btn-cream' : 'btn btn-primary'} style={{ width: '100%', justifyContent: 'center' }}>{p.cta} →</a>
-              </div>
+              </TiltCard>
             ))}
           </div>
 

@@ -58,6 +58,11 @@ const NAV_ITEMS = [
 
 const Nav = ({ route }) => {
   const [open, setOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+  const [underline, setUnderline] = React.useState(null);
+  const navLinksRef = React.useRef(null);
+  const ctaMagnetRef = React.useRef(null);
+
   React.useEffect(() => { setOpen(false); }, [route]);
   React.useEffect(() => {
     if (!open) return;
@@ -65,13 +70,47 @@ const Nav = ({ route }) => {
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 100);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const updateUnderline = React.useCallback((e) => {
+    const link = e.target.closest('a');
+    if (!link) { setUnderline(null); return; }
+    const navRect = navLinksRef.current.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    setUnderline({ left: linkRect.left - navRect.left, width: linkRect.width });
+  }, []);
+  const clearUnderline = React.useCallback(() => setUnderline(null), []);
+
+  const handleMagneticMove = React.useCallback((e) => {
+    const el = ctaMagnetRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.25;
+    const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.25;
+    el.style.transform = `translate(${dx}px, ${dy}px)`;
+  }, []);
+  const handleMagneticLeave = React.useCallback(() => {
+    if (ctaMagnetRef.current) ctaMagnetRef.current.style.transform = 'translate(0, 0)';
+  }, []);
+
   return (
     <>
       <a href="#main-content" className="skip-link">Skip to content</a>
       <nav className="nav">
         <div className="nav-inner">
-          <Logo />
-          <div className="nav-links">
+          <Logo size={scrolled ? 22 : 26} />
+          <div ref={navLinksRef} className="nav-links"
+               onMouseMove={updateUnderline}
+               onMouseLeave={clearUnderline}>
+            {underline && (
+              <div className="nav-underline" style={{ left: underline.left, width: underline.width }} />
+            )}
             {NAV_ITEMS.map(item => {
               const isActive = route === item.href.slice(2);
               return (
@@ -84,7 +123,12 @@ const Nav = ({ route }) => {
             })}
           </div>
           <div className="nav-cta">
-            <a href="#/contact" className="btn btn-primary">Order a site →</a>
+            <div ref={ctaMagnetRef} onMouseMove={handleMagneticMove} onMouseLeave={handleMagneticLeave}
+                 style={{ transition: 'transform 0.2s ease-out' }}>
+              <a href="#/contact" className="btn btn-primary">
+                Order a site →
+              </a>
+            </div>
             <button
               className="menu-btn"
               onClick={() => setOpen(!open)}
@@ -165,7 +209,112 @@ const Footer = () => (
   </footer>
 );
 
-export { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS };
+export { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS, TiltCard, CountOnView, ScrollCup };
+
+// ── New interactive components ──────────────────────────────────────────────────
+
+const TiltCard = ({ children, className = '', ...props }) => {
+  const ref = React.useRef(null);
+  const [tilt, setTilt] = React.useState({ rx: 0, ry: 0 });
+
+  const onMouseMove = React.useCallback((e) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ ry: x * 8, rx: -y * 8 });
+  }, []);
+  const onMouseLeave = React.useCallback(() => setTilt({ rx: 0, ry: 0 }), []);
+
+  if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return <div className={className} {...props}>{children}</div>;
+  }
+
+  const { style: userStyle, ...rest } = props;
+  return (
+    <div ref={ref} className={`tilt-card ${className}`}
+         onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}
+         style={{ ...userStyle, transform: `perspective(800px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}
+         {...rest}>
+      {children}
+    </div>
+  );
+};
+
+const CountOnView = ({ target, suffix = '', duration = 2000, style }) => {
+  const [count, setCount] = React.useState(0);
+  const ref = React.useRef(null);
+  const started = React.useRef(false);
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !started.current) {
+        started.current = true;
+        const start = performance.now();
+        const decimals = target % 1 !== 0;
+        const animate = (now) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const val = eased * target;
+          setCount(decimals ? val : Math.round(val));
+          if (progress < 1) requestAnimationFrame(animate);
+          else setCount(target);
+        };
+        requestAnimationFrame(animate);
+      }
+    }, { threshold: 0.5 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [target, duration]);
+
+  const decimals = target % 1 !== 0;
+  const display = decimals ? count.toFixed(1) : Math.round(count);
+
+  return (
+    <span ref={ref} className="serif" style={style}>
+      {display}{suffix}
+    </span>
+  );
+};
+
+const ScrollCup = ({ size = 200 }) => {
+  const [fill, setFill] = React.useState(0);
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+      setFill(progress);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const liquidRy = 0.5 + fill * 7.5;
+  const foamRy = fill > 0.05 ? Math.min(fill * 5.5, 5.5) : 0;
+
+  return (
+    <div className="cup" style={{ width: size, height: size * 1.1 }}>
+      <svg viewBox="0 0 200 220" width={size} height={size * 1.1} style={{ position: 'absolute', top: 0, left: 0 }}>
+        <ellipse cx="100" cy="200" rx="85" ry="10" fill="var(--espresso)" opacity="0.18" />
+        <ellipse cx="100" cy="195" rx="80" ry="9" fill="var(--espresso)" />
+        <path d="M30 90 Q30 80 40 80 L160 80 Q170 80 170 90 L162 175 Q160 192 142 192 L58 192 Q40 192 38 175 Z" fill="var(--espresso)" />
+        <path d="M170 100 Q200 100 200 130 Q200 160 170 160 L170 145 Q185 145 185 130 Q185 115 170 115 Z" fill="var(--espresso)" />
+        <ellipse cx="100" cy="86" rx="65" ry="10" fill="#1A0F0A" />
+        <ellipse cx="100" cy="86" rx="60" ry={liquidRy} fill="var(--caramel-deep)" />
+        {fill > 0.05 && (
+          <ellipse cx="100" cy="86" rx="40" ry={foamRy} fill="var(--foam)" opacity="0.95" />
+        )}
+      </svg>
+    </div>
+  );
+};
 
 // ── Scroll-reveal engine ─────────────────────────────────────────────────────
 (function () {
@@ -193,4 +342,27 @@ export { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS };
   window.addEventListener('hashchange', () =>
     requestAnimationFrame(() => requestAnimationFrame(observe))
   );
+}());
+
+// ── Global button ripple ─────────────────────────────────────────────────────
+(function () {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn');
+    if (!btn) return;
+    if (prefersReduced) return;
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    btn.appendChild(ripple);
+    const cleanup = () => ripple.remove();
+    ripple.addEventListener('animationend', cleanup);
+    setTimeout(cleanup, 700);
+  });
 }());

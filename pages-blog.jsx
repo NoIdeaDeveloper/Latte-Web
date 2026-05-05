@@ -1,4 +1,6 @@
 // pages-blog.jsx
+import { TiltCard } from './shared.jsx';
+
 const BlogPage = () => {
   const posts = [
     { tag: 'Insights', date: 'Apr 22, 2026', title: 'The case against the "one-page" website', excerpt: 'Yes, single-page sites can work. No, they\'re not the answer for most small businesses.', read: '6 min' },
@@ -9,7 +11,7 @@ const BlogPage = () => {
     { tag: 'Performance', date: 'Feb 16, 2026', title: 'Performance is a feature.', excerpt: 'Image budgets, font strategy, and the tools we lean on to keep Lighthouse scores up.', read: '9 min' },
   ];
   return (
-    <div className="page-fade">
+    <div className="page-enter">
       <section className="section-hero">
         <div className="container">
           <span className="eyebrow">The Journal</span>
@@ -34,13 +36,13 @@ const BlogPage = () => {
           <div className="reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'clamp(24px, 3vw, 32px)' }}>
             {posts.slice(1).map((p, i) => (
               <a href="#" key={i} style={{ display: 'block' }}>
-                <div className="card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <TiltCard className="card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                   <div className="placeholder-img" style={{ minHeight: 180, marginBottom: 20 }}>IMG</div>
                   <span className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 10 }}>{p.tag} · {p.date}</span>
                   <h3 className="serif" style={{ fontSize: 'clamp(18px, 1.8vw, 24px)', marginBottom: 10 }}>{p.title}</h3>
                   <p style={{ color: 'var(--espresso-2)', fontSize: 14, flex: 1, marginBottom: 16 }}>{p.excerpt}</p>
                   <span className="mono" style={{ color: 'var(--caramel-deep)', fontSize: 11 }}>Read · {p.read} →</span>
-                </div>
+                </TiltCard>
               </a>
             ))}
           </div>

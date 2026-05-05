@@ -100,6 +100,8 @@ p { margin: 0 0 1em; }
   font-size: 14px;
   font-weight: 500;
   border: none;
+  position: relative;
+  overflow: hidden;
   transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
   max-width: 100%;
@@ -186,6 +188,7 @@ p { margin: 0 0 1em; }
 }
 
 .nav-links {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 28px;
@@ -198,15 +201,6 @@ p { margin: 0 0 1em; }
   position: relative;
 }
 .nav-links a:hover, .nav-links a.active { opacity: 1; }
-.nav-links a.active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -22px;
-  height: 2px;
-  background: var(--caramel);
-}
 
 .nav-cta { display: flex; align-items: center; gap: 12px; }
 
@@ -662,4 +656,123 @@ body::after {
     transform: none !important;
     transition: none !important;
   }
+}
+
+/* ── Enhanced page transition ─────────────────────────────────────── */
+.page-enter {
+  animation: pageEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(16px) scale(0.995); filter: blur(3px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-enter { animation: none; }
+}
+
+/* ── Animated text highlights ─────────────────────────────────────── */
+.reveal h1 em,
+.reveal h2 em,
+.reveal h3 em {
+  background: linear-gradient(180deg, transparent 62%, var(--caramel-deep) 62%);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+.reveal.revealed h1 em,
+.reveal.revealed h2 em,
+.reveal.revealed h3 em {
+  background-size: 100% 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal h1 em, .reveal h2 em, .reveal h3 em { background-size: 100% 100%; transition: none; }
+}
+
+/* ── Animated background patterns ─────────────────────────────────── */
+.section-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: radial-gradient(circle, var(--cream) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: drift 20s linear infinite;
+  pointer-events: none;
+}
+@keyframes drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 30px 30px; }
+}
+
+.section-dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, var(--caramel) 0%, transparent 60%),
+              radial-gradient(ellipse at 30% 20%, var(--maple) 0%, transparent 50%);
+  opacity: 0.06;
+  animation: gradientPulse 15s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes gradientPulse {
+  0%, 100% { opacity: 0.04; }
+  50% { opacity: 0.1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-dark::before { animation: none; }
+  .section-dark::after { animation: none; }
+}
+
+/* ── Card tilt ─────────────────────────────────────────────────────── */
+.tilt-card {
+  transition: transform 0.2s ease-out, box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1), border-color 0.25s ease;
+  transform-style: preserve-3d;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card { transition: none; }
+}
+
+/* ── Nav floating underline ────────────────────────────────────────── */
+.nav-underline {
+  position: absolute;
+  bottom: -22px;
+  height: 2px;
+  background: var(--caramel);
+  border-radius: 1px;
+  transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-underline { transition: none; }
+}
+
+/* ── Button ripple ─────────────────────────────────────────────────── */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(0);
+  animation: rippleAnim 0.65s ease-out forwards;
+  pointer-events: none;
+}
+.btn-primary .ripple { background: rgba(255, 255, 255, 0.3); }
+.btn-cream .ripple { background: rgba(43, 24, 16, 0.15); }
+.btn-ghost .ripple { background: rgba(43, 24, 16, 0.12); }
+@keyframes rippleAnim {
+  to { transform: scale(4); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn .ripple { animation: none; display: none; }
+}
+
+/* ── Hero cup float ────────────────────────────────────────────────── */
+.hero-cup {
+  animation: heroFloat 6s ease-in-out infinite;
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-cup { animation: none; }
 }

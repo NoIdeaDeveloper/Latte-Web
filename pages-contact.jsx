@@ -25,7 +25,7 @@ const ContactPage = () => {
 
   if (sent) {
     return (
-      <div className="page-fade">
+      <div className="page-enter">
         <section style={{ padding: 'clamp(60px, 10vw, 120px) 0' }}>
           <div className="container" style={{ textAlign: 'center', maxWidth: 600 }}>
             <div className="placeholder-img" style={{ width: 120, height: 120, borderRadius: '50%', margin: '0 auto', minHeight: 0, fontSize: 24, color: 'var(--caramel-deep)' }}>✓</div>
@@ -41,7 +41,7 @@ const ContactPage = () => {
   }
 
   return (
-    <div className="page-fade">
+    <div className="page-enter">
       <section style={{ padding: 'clamp(48px, 8vw, 80px) 0 clamp(24px, 5vw, 40px)' }}>
         <div className="container">
           <span className="eyebrow">Contact</span>

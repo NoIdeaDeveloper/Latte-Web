@@ -1,6 +1,6 @@
 // pages-privacy.jsx
 const PrivacyPage = () => (
-  <div className="page-fade">
+  <div className="page-enter">
     <section className="section-hero">
       <div className="container">
         <span className="eyebrow">Privacy Policy</span>

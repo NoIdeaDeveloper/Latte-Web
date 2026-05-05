@@ -3,7 +3,7 @@
 import { MapleLeaf } from './shared.jsx';
 
 const AboutPage = () => (
-  <div className="page-fade">
+  <div className="page-enter">
     <section className="section-hero">
       <div className="container">
         <span className="canadian-badge" style={{ marginBottom: 24 }}>

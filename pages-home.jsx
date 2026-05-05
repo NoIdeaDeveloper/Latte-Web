@@ -1,10 +1,10 @@
 // pages-home.jsx — Home page
 
-import { MapleLeaf } from './shared.jsx';
+import { MapleLeaf, TiltCard, CountOnView, ScrollCup } from './shared.jsx';
 
 const HomePage = () => {
   return (
-    <div className="page-fade">
+    <div className="page-enter">
       {/* HERO */}
       <section style={{ padding: 'clamp(56px, 8vw, 80px) 0 clamp(40px, 6vw, 60px)', position: 'relative', overflow: 'hidden' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
@@ -27,12 +27,12 @@ const HomePage = () => {
 
               <div className="stat-row" style={{ marginTop: 'clamp(40px, 6vw, 56px)' }}>
                 <div>
-                  <div className="serif" style={{ fontSize: 'clamp(30px, 4vw, 36px)' }}>120+</div>
+                  <CountOnView target={120} suffix="+" duration={2000} style={{ fontSize: 'clamp(30px, 4vw, 36px)' }} />
                   <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginTop: 4 }}>Sites Launched</div>
                 </div>
                 <div className="divider" />
                 <div>
-                  <div className="serif" style={{ fontSize: 'clamp(30px, 4vw, 36px)' }}>99.9%</div>
+                  <CountOnView target={99.9} suffix="%" duration={2000} style={{ fontSize: 'clamp(30px, 4vw, 36px)' }} />
                   <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginTop: 4 }}>Uptime Guarantee</div>
                 </div>
                 <div className="divider" />
@@ -43,10 +43,8 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div style={{ flex: '1 1 320px', maxWidth: 420, display: 'flex', justifyContent: 'center' }}>
-              <div className="placeholder-img" style={{ width: '100%', maxWidth: 360, aspectRatio: '6/7', minHeight: 0, borderRadius: 20 }}>
-                Hero imagery
-              </div>
+            <div style={{ flex: '1 1 320px', maxWidth: 420, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <div className="hero-cup"><ScrollCup size={280} /></div>
             </div>
           </div>
         </div>
@@ -93,7 +91,7 @@ const HomePage = () => {
               { name: 'Site Management', sub: 'Maintenance & Care', desc: 'Updates, backups, security, content edits — all the maintenance handled for you, every month, in the background.', from: '$95/mo', notes: 'Updates · Edits · Reports' },
               { name: 'Hosting', sub: 'Fast & Canadian', desc: 'Lightning-fast Canadian hosting on green-powered servers. SSL, CDN, and daily backups all included.', from: '$15/mo', notes: 'CDN · SSL · Backups' },
             ].map((b, i) => (
-              <div key={i} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+              <TiltCard key={i} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <div className="mono" style={{ color: 'var(--caramel-deep)', marginBottom: 16 }}>0{i+1} / {b.sub}</div>
                 <h3 className="serif" style={{ fontSize: 'clamp(24px, 2.8vw, 32px)', marginBottom: 8 }}>{b.name}</h3>
                 <p style={{ color: 'var(--espresso-2)', fontSize: 15, marginBottom: 24, flex: 1 }}>{b.desc}</p>
@@ -101,7 +99,7 @@ const HomePage = () => {
                   <span className="mono" style={{ color: 'var(--muted)', fontSize: 11 }}>{b.notes}</span>
                   <span className="serif" style={{ fontSize: 22, color: 'var(--espresso)' }}>from {b.from}</span>
                 </div>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </div>
