@@ -285,15 +285,23 @@ const ScrollCup = ({ size = 200 }) => {
   const [fill, setFill] = React.useState(0);
 
   React.useEffect(() => {
+    let rafId = null;
     const onScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
-      setFill(progress);
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+        setFill(progress);
+      });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const liquidRy = 0.5 + fill * 7.5;
