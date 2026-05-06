@@ -1,6 +1,6 @@
 // pages-faq.jsx
 const FAQPage = () => {
-  const [open, setOpen] = React.useState(0);
+  const [open, setOpen] = React.useState(-1);
   const items = [
     { q: 'How long does a new website take?', a: 'Most projects take 3–5 weeks, from concept to launch, freshly brewed. We move quickly, but never rush the parts that matter — strategy, design, and content. We give you a firm timeline at the start.' },
     { q: 'Do I own the site when it\'s done?', a: 'Yes — every line of code, every design file, every account. We don\'t hold sites hostage. If you ever leave Latte, you take everything with you.' },

@@ -63,10 +63,13 @@ const Nav = ({ route }) => {
   const navLinksRef = React.useRef(null);
   const ctaMagnetRef = React.useRef(null);
 
-  React.useEffect(() => { setOpen(false); }, [route]);
+  React.useEffect(() => {
+    setOpen(false);
+    document.body.classList.remove('menu-open');
+  }, [route]);
   React.useEffect(() => {
     if (!open) return;
-    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    const onKey = (e) => { if (e.key === 'Escape') { setOpen(false); document.body.classList.remove('menu-open'); } };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
@@ -131,7 +134,11 @@ const Nav = ({ route }) => {
             </div>
             <button
               className="menu-btn"
-              onClick={() => setOpen(!open)}
+              onClick={() => {
+                const next = !open;
+                setOpen(next);
+                document.body.classList.toggle('menu-open', next);
+              }}
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -203,7 +210,9 @@ const Footer = () => (
       </div>
       <div className="footer-bottom">
         <span>© 2026 Latte Web Co. All rights reserved.</span>
-        <span>Built in Canada, end to end 🍁</span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          Built in Canada, end to end <MapleLeaf size={12} color="var(--caramel)" />
+        </span>
       </div>
     </div>
   </footer>

@@ -21,7 +21,7 @@ const AboutPage = () => (
     <section className="tight reveal">
       <div className="container">
         <div className="grid-split">
-          <div className="placeholder-img" style={{ aspectRatio: '4/5', minHeight: 0 }}>FOUNDER PORTRAIT</div>
+          <div className="placeholder-img" style={{ aspectRatio: '4/5', minHeight: 0 }}>Founder portrait</div>
           <div>
             <span className="eyebrow">The Story</span>
             <h2 className="serif" style={{ marginTop: 16, marginBottom: 20 }}>Why Latte exists.</h2>

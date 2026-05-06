@@ -28,7 +28,12 @@ const ContactPage = () => {
       <div className="page-enter">
         <section style={{ padding: 'clamp(60px, 10vw, 120px) 0' }}>
           <div className="container" style={{ textAlign: 'center', maxWidth: 600 }}>
-            <div className="placeholder-img" style={{ width: 120, height: 120, borderRadius: '50%', margin: '0 auto', minHeight: 0, fontSize: 24, color: 'var(--caramel-deep)' }}>✓</div>
+            <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'var(--foam)', border: '1px solid var(--line)', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                <circle cx="18" cy="18" r="17" stroke="var(--caramel)" strokeWidth="1.5" />
+                <path d="M11 18.5l5 5 9-10" stroke="var(--caramel-deep)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
             <h1 className="serif" style={{ marginTop: 32, marginBottom: 20 }}>Message received.</h1>
             <p style={{ fontSize: 18, color: 'var(--espresso-2)', marginBottom: 32 }}>
               Thanks, {form.name.split(' ')[0]}! We've got your details. We'll respond within one business day — usually sooner.
