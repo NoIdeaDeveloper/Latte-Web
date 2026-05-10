@@ -14,7 +14,11 @@ const PrivacyPage = () => (
       <div className="container" style={{ maxWidth: 760 }}>
         <div style={{ background: 'var(--foam)', padding: 'clamp(32px, 4vw, 48px) clamp(24px, 3vw, 32px)', borderRadius: 12, border: '1px solid var(--line-strong)' }}>
           <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(17px, 1.7vw, 20px)', color: 'var(--espresso)', lineHeight: 1.7, marginBottom: 28 }}>
-            We don't track you. No cookies, no hidden scripts, no third-party analytics. When you visit this site, your browser leaves no footprint behind.
+            We don't track you. No cookies, no third-party analytics. When you visit this site, your browser leaves no footprint behind.
+          </p>
+
+          <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(17px, 1.7vw, 20px)', color: 'var(--espresso)', lineHeight: 1.7, marginBottom: 28 }}>
+            This site loads two external resources — <strong>React</strong> from <a href="https://hop.js.org" target="_blank" rel="noopener">hop.js</a> (via <code>cdn.hopjs.net</code>) and display fonts from <a href="https://fonts.bunny.net" target="_blank" rel="noopener">Bunny Fonts</a> (via <code>fonts.bunny.net</code>). Both CDNs are operated by Bunny.net and designed with privacy first — no cookies, no fingerprinting, no logging of visitor IPs. They are the only third-party requests your browser makes when loading this page.
           </p>
 
           <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(17px, 1.7vw, 20px)', color: 'var(--espresso)', lineHeight: 1.7, marginBottom: 28 }}>
