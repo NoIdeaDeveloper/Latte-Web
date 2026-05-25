@@ -8,7 +8,8 @@
 
   <meta name="theme-color" content="#F7F4EE" />
   <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.bunny.net/css?family=newsreader:400,400i|dm-sans:400,500|jetbrains-mono:400&display=swap" />
+  <link rel="preconnect" href="https://cdn.hopjs.net" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.bunny.net/css?family=newsreader:400,400i|dm-sans:400,500|jetbrains-mono:400&display=swap" fetchpriority="high" />
   <link href="https://fonts.bunny.net/css?family=newsreader:400,400i|dm-sans:400,500|jetbrains-mono:400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
@@ -17,6 +18,6 @@
 </head>
 <body>
   <div id="root"></div>
-  <script src="dist/bundle.js"></script>
+  <script src="dist/bundle.js" defer></script>
 </body>
 </html>

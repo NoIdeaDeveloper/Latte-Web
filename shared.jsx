@@ -87,7 +87,16 @@ const Nav = ({ route }) => {
   }, [open]);
 
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const isScrolled = window.scrollY > 100;
+        setScrolled(prev => prev === isScrolled ? prev : isScrolled);
+        ticking = false;
+      });
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
