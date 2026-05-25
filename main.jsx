@@ -9,16 +9,15 @@ import { ContactPage } from './pages-contact.jsx';
 import { PrivacyPage } from './pages-privacy.jsx';
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "palette": "modern",
+  "palette": "bone",
   "metaphor": "balanced",
   "heroVariant": "default"
 }/*EDITMODE-END*/;
 
 const PALETTES = {
-  warm:    { cream: '#F5EFE6', foam: '#FAF6F0', espresso: '#2B1810', caramel: '#C68B59', caramelDeep: '#A86C3D' },
-  moody:   { cream: '#1F1612', foam: '#2A1F19', espresso: '#F5EFE6', caramel: '#D9A574', caramelDeep: '#E8B780' },
-  modern:  { cream: '#F4F1EC', foam: '#FFFFFF', espresso: '#1A1A1A', caramel: '#C7553A', caramelDeep: '#A8442E' },
-  maple:   { cream: '#F5EFE6', foam: '#FAF6F0', espresso: '#2B1810', caramel: '#B8392E', caramelDeep: '#8E2A22' },
+  bone:    { cream: '#F7F4EE', foam: '#FFFFFF', espresso: '#2B2219', caramel: '#C4754E', caramelDeep: '#A85C38' },
+  dusk:    { cream: '#1C1815', foam: '#292420', espresso: '#F7F4EE', caramel: '#D4936E', caramelDeep: '#E0A880' },
+  clay:    { cream: '#FAF5F0', foam: '#FDF9F5', espresso: '#3D2B1E', caramel: '#D4845A', caramelDeep: '#B5683E' },
 };
 
 const useHashRoute = () => {
@@ -39,7 +38,7 @@ function App() {
   const route = useHashRoute();
 
   React.useEffect(() => {
-    const p = PALETTES[tweaks.palette] || PALETTES.warm;
+    const p = PALETTES[tweaks.palette] || PALETTES.bone;
     const r = document.documentElement.style;
     r.setProperty('--cream', p.cream);
     r.setProperty('--foam', p.foam);
@@ -47,16 +46,16 @@ function App() {
     r.setProperty('--ink', p.espresso);
     r.setProperty('--caramel', p.caramel);
     r.setProperty('--caramel-deep', p.caramelDeep);
-    if (tweaks.palette === 'moody') {
-      r.setProperty('--espresso-2', '#D8CDB8');
-      r.setProperty('--muted', '#9C8A78');
-      r.setProperty('--line', 'rgba(245, 239, 230, 0.1)');
-      r.setProperty('--line-strong', 'rgba(245, 239, 230, 0.2)');
+    if (tweaks.palette === 'dusk') {
+      r.setProperty('--espresso-2', '#C4B6A8');
+      r.setProperty('--muted', '#8C7D6F');
+      r.setProperty('--line', 'rgba(247, 244, 238, 0.1)');
+      r.setProperty('--line-strong', 'rgba(247, 244, 238, 0.2)');
     } else {
-      r.setProperty('--espresso-2', '#3D261A');
-      r.setProperty('--muted', '#7A6A5C');
-      r.setProperty('--line', 'rgba(43, 24, 16, 0.12)');
-      r.setProperty('--line-strong', 'rgba(43, 24, 16, 0.22)');
+      r.setProperty('--espresso-2', '#5C4E40');
+      r.setProperty('--muted', '#7A6C5E');
+      r.setProperty('--line', 'rgba(43, 34, 25, 0.12)');
+      r.setProperty('--line-strong', 'rgba(43, 34, 25, 0.22)');
     }
   }, [tweaks.palette]);
 
@@ -82,14 +81,13 @@ function App() {
       <Nav route={route} />
       <main key={route} id="main-content" tabIndex="-1" ref={mainRef} style={{ outline: 'none' }}><Page /></main>
       <Footer />
-      <TweaksPanel title="Latte Tweaks">
+      <TweaksPanel title="Good Bones Tweaks">
         <TweakSection label="Brand" />
         <TweakSelect label="Palette" value={tweaks.palette}
           options={[
-            { value: 'warm',   label: 'Warm Cafe' },
-            { value: 'moody',  label: 'Moody / Dark' },
-            { value: 'modern', label: 'Modern Indie' },
-            { value: 'maple',  label: 'Canadian Maple' },
+            { value: 'bone',  label: 'Bone (Default)' },
+            { value: 'dusk',  label: 'Dusk (Dark)' },
+            { value: 'clay',  label: 'Clay (Warm)' },
           ]}
           onChange={v => setTweak('palette', v)} />
         <TweakSection label="Quick links" />

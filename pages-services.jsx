@@ -10,7 +10,7 @@ const ServicesPage = () => (
           What we <em style={{ color: 'var(--caramel-deep)' }}>do</em>.
         </h1>
         <p style={{ fontSize: 'clamp(16px, 1.5vw, 20px)', color: 'var(--espresso-2)', maxWidth: 720 }}>
-          Three services on the menu. Pick what you need, or bundle all three — design, management, and hosting under one roof.
+          Three services, one person. Pick what you need, or bundle all three — design, care, and hosting under one roof.
         </p>
       </div>
     </section>
@@ -19,22 +19,22 @@ const ServicesPage = () => (
       {
         num: '01', name: 'Web Design', sub: 'Design & Development',
         tagline: 'A site that looks like you, not a template.',
-        desc: 'A custom website, designed to your brand and built to perform. We don\'t use templates, page builders, or stock layouts — every project is built from scratch with strategy, design, content, and clean code.',
+        desc: 'A custom website designed for your brand and built to perform. No templates, no page builders, no shortcuts — every project starts from strategy and ends with clean, hand-coded code.',
         includes: ['Brand & competitor research', 'Sitemap and wireframes', 'Custom visual design (3 rounds)', 'Responsive build, hand-coded', 'Content writing assistance', 'SEO foundations', '2 weeks of post-launch tweaks'],
         from: '$2,400 CAD',
       },
       {
-        num: '02', name: 'Site Management', sub: 'Maintenance & Care',
-        tagline: 'Set it, forget it. We\'ll handle the rest.',
-        desc: 'Software updates. Backups. Security. Monthly content edits. Performance tune-ups. We treat your site like our own — quietly, in the background — so you can focus on running your business.',
-        includes: ['Weekly software & plugin updates', 'Daily off-site backups', 'Uptime & security monitoring', 'Up to 1 hour of edits/month', 'Monthly performance report', 'Priority email & phone support', 'Emergency restore included'],
+        num: '02', name: 'Site Care', sub: 'Maintenance & Support',
+        tagline: 'Set it, forget it. I\'ll handle the rest.',
+        desc: 'Software updates. Backups. Security. Monthly content edits. Performance tune-ups. I treat your site like it\'s my own — quietly, in the background — so you can focus on what you do best.',
+        includes: ['Weekly software & plugin updates', 'Daily off-site backups', 'Uptime & security monitoring', 'Up to 1 hour of edits/month', 'Monthly performance report', 'Priority email support', 'Emergency restore included'],
         from: '$95 CAD/month',
       },
       {
         num: '03', name: 'Hosting', sub: 'Fast, Canadian, Managed',
         tagline: 'Where your site lives. And how fast it runs.',
-        desc: 'Your site lives on Canadian-owned, renewable-powered servers. Domains registered through Canadian-owned registrars. When we need services beyond our borders, we choose privacy-respecting operators. No data mining, no hidden tracking — just fast, reliable hosting that keeps your data where it belongs. Canadians supporting Canadians.',
-        includes: ['Toronto & Montreal data centres', 'Global CDN (200+ locations)', 'Free SSL certificates', 'Daily backups, kept for 30 days', '99.9% uptime SLA', 'No surprise overage fees', '100% renewable-powered'],
+        desc: 'Fast, renewable-powered Canadian servers. Domains through Canadian registrars. SSL, CDN, daily backups — all included. Your data stays on Canadian soil, period. Canadians supporting Canadians.',
+        includes: ['Canadian data centres', 'Global CDN (200+ locations)', 'Free SSL certificates', 'Daily backups, kept for 30 days', '99.9% uptime SLA', 'No surprise overage fees', '100% renewable-powered'],
         from: '$15 CAD/month',
       },
     ].map((s, i) => (
@@ -72,7 +72,7 @@ const ServicesPage = () => (
       <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="serif" style={{ marginBottom: 20 }}>Bundle and <em style={{ color: 'var(--caramel-deep)' }}>save</em>.</h2>
         <p style={{ fontSize: 'clamp(16px, 1.5vw, 18px)', color: 'var(--espresso-2)', maxWidth: 600, margin: '0 auto 28px' }}>
-          Combine Design + Management + Hosting and save 20% — your site, end to end, one monthly price.
+          Combine Design + Site Care + Hosting and save 20% — your site, end to end, one monthly price.
         </p>
         <a href="#/pricing" className="btn btn-primary">See bundles →</a>
       </div>
@@ -92,7 +92,7 @@ const PricingPage = () => {
     {
       name: 'Standard', tagline: 'Most popular.', popular: true,
       monthly: 149, annual: 119,
-      features: ['Up to 12 pages, custom designed', 'Premium hosting + CDN', 'Daily backups', '1 hour edits / month', 'Priority email & chat', 'Monthly performance report', 'On-page SEO included'],
+      features: ['Up to 12 pages, custom designed', 'Premium hosting + CDN', 'Daily backups', '1 hour edits / month', 'Priority email support', 'Monthly performance report', 'On-page SEO included'],
       cta: 'Get Standard',
     },
     {
@@ -112,7 +112,7 @@ const PricingPage = () => {
             One <em style={{ color: 'var(--caramel-deep)' }}>price</em>.<br/>Everything included.
           </h1>
           <p style={{ fontSize: 'clamp(16px, 1.5vw, 20px)', color: 'var(--espresso-2)', maxWidth: 640, margin: '0 auto 40px' }}>
-            Design, hosting, and management — bundled into a single monthly subscription. No setup fees. No surprise invoices. Cancel any time.
+            Design, care, and hosting — bundled into a single monthly subscription. No setup fees. No surprise invoices. Cancel any time.
           </p>
 
           {/* Billing toggle */}
@@ -170,7 +170,7 @@ const PricingPage = () => {
           </div>
 
           <p style={{ textAlign: 'center', marginTop: 40, color: 'var(--muted)', fontSize: 14 }}>
-            All plans include free SSL, hosting in Canada, and a 30-day money-back guarantee.
+            All plans include free SSL, reliable hosting, and a 30-day money-back guarantee.
             <br/>Need something custom? <a href="#/contact" style={{ color: 'var(--caramel-deep)', textDecoration: 'underline' }}>Let's chat.</a>
           </p>
         </div>

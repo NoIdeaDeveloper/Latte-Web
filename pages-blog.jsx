@@ -4,11 +4,11 @@ import { TiltCard } from './shared.jsx';
 const BlogPage = () => {
   const posts = [
     { slug: 'one-page-website', tag: 'Insights', date: 'Apr 22, 2026', title: 'The case against the "one-page" website', excerpt: 'Yes, single-page sites can work. No, they\'re not the answer for most small businesses.', read: '6 min' },
-    { slug: 'why-we-host-in-canada', tag: 'Hosting', date: 'Apr 09, 2026', title: 'Why we host in Canada', excerpt: 'Speed, sovereignty, and the surprisingly long list of reasons your data\'s passport matters.', read: '4 min' },
+    { slug: 'why-good-hosting-matters', tag: 'Hosting', date: 'Apr 09, 2026', title: 'Why hosting matters more than you think', excerpt: 'Speed, reliability, and why your site\'s foundation is just as important as its design.', read: '4 min' },
     { slug: 'bakery-case-study', tag: 'Case Study', date: 'Mar 28, 2026', title: 'How a small bakery doubled their wholesale orders with one new page', excerpt: 'A case study from Maple & Birch — three weeks of work, a year of compounding results.', read: '8 min' },
     { slug: 'maintenance-checklist', tag: 'Insights', date: 'Mar 14, 2026', title: 'The website maintenance you\'re probably skipping', excerpt: 'Sites age fast when nobody looks after them. A 15-minute monthly checklist.', read: '5 min' },
     { slug: 'homepage-hero-writing', tag: 'Workshop', date: 'Feb 28, 2026', title: 'Writing a homepage hero that actually says something', excerpt: 'Drop "Welcome to our website." A four-step framework that earns the scroll.', read: '7 min' },
-    { slug: 'performance-is-a-feature', tag: 'Performance', date: 'Feb 16, 2026', title: 'Performance is a feature.', excerpt: 'Image budgets, font strategy, and the tools we lean on to keep Lighthouse scores up.', read: '9 min' },
+    { slug: 'performance-is-a-feature', tag: 'Performance', date: 'Feb 16, 2026', title: 'Performance is a feature.', excerpt: 'Image budgets, font strategy, and the tools I lean on to keep Lighthouse scores up.', read: '9 min' },
   ];
   return (
     <div className="page-enter">
@@ -16,7 +16,7 @@ const BlogPage = () => {
         <div className="container">
           <span className="eyebrow">The Journal</span>
           <h1 className="serif" style={{ marginTop: 16, marginBottom: 24 }}>Notes & <em style={{ color: 'var(--caramel-deep)' }}>insights</em>.</h1>
-          <p style={{ fontSize: 'clamp(16px, 1.5vw, 20px)', color: 'var(--espresso-2)', maxWidth: 640 }}>What we're learning, what we're shipping, and the occasional rant about web fonts.</p>
+          <p style={{ fontSize: 'clamp(16px, 1.5vw, 20px)', color: 'var(--espresso-2)', maxWidth: 640 }}>What I'm learning, what I'm shipping, and the occasional rant about web fonts.</p>
         </div>
       </section>
       <section className="tight reveal">

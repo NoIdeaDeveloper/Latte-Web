@@ -2,14 +2,14 @@
 const FAQPage = () => {
   const [open, setOpen] = React.useState(-1);
   const items = [
-    { q: 'How long does a new website take?', a: 'Most projects take 3–5 weeks, from concept to launch, freshly brewed. We move quickly, but never rush the parts that matter — strategy, design, and content. We give you a firm timeline at the start.' },
-    { q: 'Do I own the site when it\'s done?', a: 'Yes — every line of code, every design file, every account. We don\'t hold sites hostage. If you ever leave Latte, you take everything with you.' },
-    { q: 'Can you redesign my existing site?', a: 'Absolutely. About a third of our work is redesigns. We\'ll audit what\'s working, what isn\'t, and rebuild it with care. Migration included.' },
-    { q: 'Why Canadian hosting?', a: 'Your data lives on Canadian-owned servers, registered through Canadian-owned registrars. Speed matters, but so does sovereignty — Canadian data should stay under Canadian law. When a Canadian provider doesn\'t offer what we need, we choose privacy-respecting alternatives, never the data-mining defaults. Canadians supporting Canadians.' },
-    { q: 'What happens if I need an edit at midnight?', a: 'Site Management clients get priority email and chat. For real emergencies (site down, payment broken), we have a 24/7 line. We aim for under 30 minutes.' },
-    { q: 'WordPress, Webflow, or custom?', a: 'Depends on the project. Most work is hand-coded with modern tools (Astro, Next.js) for performance. WordPress when content workflows demand it. We recommend what fits.' },
-    { q: 'Can I cancel my management plan anytime?', a: 'Yes. No contracts, no cancellation fees. Pay month to month — and we\'ll happily transfer your site somewhere else if you need to leave.' },
-    { q: 'Do you work with clients outside Canada?', a: 'We do. About 30% of our clients are in the US, UK, and EU. We\'re Canadian-based, so timing works best with North American hours.' },
+    { q: 'How long does a new website take?', a: 'Most projects take 3–5 weeks, from concept to launch. I move quickly but never rush the parts that matter — strategy, design, and content. You\'ll get a firm timeline at the start.' },
+    { q: 'Do I own the site when it\'s done?', a: 'Yes — every line of code, every design file, every account. I don\'t hold sites hostage. If you ever leave Good Bones Web, you take everything with you.' },
+    { q: 'Can you redesign my existing site?', a: 'Absolutely. About a third of my work is redesigns. I\'ll audit what\'s working, what isn\'t, and rebuild it with care — like renovating a house with good bones. Migration included.' },
+    { q: 'What about hosting and domains?', a: 'Your data lives on Canadian-owned servers, registered through Canadian-owned registrars. Speed matters, but so does sovereignty — Canadian data should stay under Canadian law. When a Canadian provider doesn\'t offer what I need, I choose privacy-respecting alternatives, never the data-mining defaults.' },
+    { q: 'What happens if I need an edit urgently?', a: 'Site Care clients get priority email support. For real emergencies (site down, payment broken), I provide a direct line and aim for under 30 minutes.' },
+    { q: 'WordPress, Webflow, or custom?', a: 'Depends on the project. Most work is hand-coded with modern tools for performance. WordPress when content workflows demand it. I\'ll recommend what fits your needs.' },
+    { q: 'Can I cancel my care plan anytime?', a: 'Yes. No contracts, no cancellation fees. Pay month to month — and I\'ll happily transfer your site if you ever need to leave.' },
+    { q: 'Do you work with clients outside Canada?', a: 'I do. While I\'m based in Edmonton, AB, I work with clients across Canada and the US. Hours work best with North American time zones.' },
   ];
   return (
     <div className="page-enter">
@@ -58,8 +58,8 @@ const FAQPage = () => {
       <section className="tight reveal">
         <div className="container" style={{ textAlign: 'center' }}>
           <h3 className="serif" style={{ marginBottom: 16 }}>Still curious?</h3>
-          <p style={{ color: 'var(--muted)', marginBottom: 24 }}>We're happy to chat — no pressure, no sales pitch.</p>
-          <a href="#/contact" className="btn btn-primary">Ask us anything →</a>
+          <p style={{ color: 'var(--muted)', marginBottom: 24 }}>I'm happy to chat — no pressure, no sales pitch.</p>
+          <a href="#/contact" className="btn btn-primary">Ask me anything →</a>
         </div>
       </section>
     </div>

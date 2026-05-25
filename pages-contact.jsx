@@ -36,7 +36,7 @@ const ContactPage = () => {
             </div>
             <h1 className="serif" style={{ marginTop: 32, marginBottom: 20 }}>Message received.</h1>
             <p style={{ fontSize: 18, color: 'var(--espresso-2)', marginBottom: 32 }}>
-              Thanks, {form.name.split(' ')[0]}! We've got your details. We'll respond within one business day — usually sooner.
+              Thanks, {form.name.split(' ')[0]}! I've got your details. I'll respond within one business day — usually sooner.
             </p>
             <a href="#/" className="btn btn-ghost">Back home →</a>
           </div>
@@ -54,7 +54,7 @@ const ContactPage = () => {
             Let's <em style={{ color: 'var(--caramel-deep)' }}>talk</em>.
           </h1>
           <p style={{ fontSize: 'clamp(17px, 1.5vw, 20px)', color: 'var(--espresso-2)', maxWidth: 640 }}>
-            Tell us a bit about your business and what you're looking for. We respond within one business day with a quote and a no-pressure conversation.
+            Tell me about your business and what you're looking for. I'll respond within one business day with a quote and a no-pressure conversation.
           </p>
         </div>
       </section>
@@ -84,7 +84,7 @@ const ContactPage = () => {
                   <span>Service</span>
                   <select className="input" value={form.service} onChange={e => set('service', e.target.value)}>
                     <option value="design">Web Design</option>
-                    <option value="management">Site Management</option>
+                    <option value="management">Site Care</option>
                     <option value="hosting">Hosting</option>
                     <option value="combo">All three (bundle)</option>
                     <option value="other">Not sure yet</option>
@@ -107,31 +107,31 @@ const ContactPage = () => {
                 {errors.message && <span id="err-message" className="err-msg" role="alert">{errors.message}</span>}
               </label>
               <button type="submit" className="btn btn-primary" disabled={isSubmitting} style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}>
-                {isSubmitting ? 'Sending…' : 'Send order →'}
+                {isSubmitting ? 'Sending…' : 'Send message →'}
               </button>
-              <p className="mono" style={{ fontSize: 11, color: 'var(--muted)', textAlign: 'center', marginTop: 16, marginBottom: 0 }}>We respond within 1 business day · No spam, ever</p>
+              <p className="mono" style={{ fontSize: 11, color: 'var(--muted)', textAlign: 'center', marginTop: 16, marginBottom: 0 }}>I respond within 1 business day · No spam, ever</p>
             </form>
 
             <div>
-              <h3 className="serif" style={{ marginBottom: 20 }}>Other ways to reach us.</h3>
+              <h3 className="serif" style={{ marginBottom: 20 }}>Other ways to reach me.</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                 <div>
                   <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 4 }}>Email</div>
-                  <a href="mailto:hello@latte.studio" style={{ fontSize: 18 }}>hello@latte.studio</a>
+                  <a href="mailto:hello@goodbonesweb.ca" style={{ fontSize: 18 }}>hello@goodbonesweb.ca</a>
                 </div>
                 <div>
-                  <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 4 }}>Phone</div>
-                  <a href="tel:+18885288393" style={{ fontSize: 18 }}>1-888-LATTE-WEB</a>
+                  <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 4 }}>Location</div>
+                  <div style={{ fontSize: 16 }}>Edmonton, AB</div>
                 </div>
                 <div>
                   <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginBottom: 4 }}>Hours</div>
-                  <div style={{ fontSize: 16 }}>Mon–Fri · 9am–6pm ET</div>
+                  <div style={{ fontSize: 16 }}>Mon–Fri · 9am–5pm MT</div>
                 </div>
                 <div style={{ paddingTop: 24, borderTop: '1px solid var(--line)' }}>
-                  <span className="canadian-badge">
-                    <MapleLeaf size={12} color="var(--maple)" /> Based in Canada
+              <span className="canadian-badge">
+                <MapleLeaf size={12} color="var(--maple)" /> Canadian Owned & Operated
                   </span>
-                  <p style={{ fontSize: 14, color: 'var(--muted)', marginTop: 12 }}>Servicing small businesses coast to coast.</p>
+                  <p style={{ fontSize: 14, color: 'var(--muted)', marginTop: 12 }}>Serving small businesses across Canada, coast to coast.</p>
                 </div>
               </div>
             </div>

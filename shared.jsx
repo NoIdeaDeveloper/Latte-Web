@@ -1,4 +1,4 @@
-// shared.jsx — Logo, Nav, Footer, CoffeeCup, MapleLeaf
+// shared.jsx — Logo, Nav, Footer, HouseOutline, MapleLeaf
 
 const MapleLeaf = ({ size = 12, color = 'currentColor' }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill={color} aria-hidden="true">
@@ -6,44 +6,56 @@ const MapleLeaf = ({ size = 12, color = 'currentColor' }) => (
   </svg>
 );
 
-const CoffeeCup = ({ size = 280, withSteam = true, dark = false }) => {
-  const cupColor = dark ? 'var(--cream)' : 'var(--espresso)';
-  const liquid = dark ? 'var(--caramel)' : 'var(--caramel-deep)';
-  const foam = 'var(--foam)';
+const HouseOutline = ({ size = 280, dark = false }) => {
+  const lineColor = dark ? 'var(--cream)' : 'var(--espresso)';
+  const accentColor = 'var(--caramel)';
   return (
-    <div className="cup" style={{ width: size, height: size * 1.1 }}>
-      {withSteam && (
-        <div style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', width: 90, height: 80 }}>
-          <div className={`steam s1 ${dark ? 'steam-dark' : ''}`} />
-          <div className={`steam s2 ${dark ? 'steam-dark' : ''}`} />
-          <div className={`steam s3 ${dark ? 'steam-dark' : ''}`} />
-        </div>
-      )}
-      <svg viewBox="0 0 200 220" width={size} height={size * 1.1} style={{ position: 'absolute', top: 0, left: 0 }}>
-        {/* Saucer */}
-        <ellipse cx="100" cy="200" rx="85" ry="10" fill={cupColor} opacity="0.18" />
-        <ellipse cx="100" cy="195" rx="80" ry="9" fill={cupColor} />
-        {/* Cup body */}
-        <path d="M30 90 Q30 80 40 80 L160 80 Q170 80 170 90 L162 175 Q160 192 142 192 L58 192 Q40 192 38 175 Z" fill={cupColor} />
-        {/* Handle */}
-        <path d="M170 100 Q200 100 200 130 Q200 160 170 160 L170 145 Q185 145 185 130 Q185 115 170 115 Z" fill={cupColor} />
-        {/* Cup interior */}
-        <ellipse cx="100" cy="86" rx="65" ry="10" fill={dark ? '#1A0F0A' : '#1A0F0A'} />
-        {/* Liquid */}
-        <ellipse cx="100" cy="86" rx="60" ry="8" fill={liquid} />
-        {/* Foam dots / latte art */}
-        <ellipse cx="100" cy="86" rx="40" ry="5.5" fill={foam} opacity="0.95" />
-        <circle cx="100" cy="86" r="3" fill={liquid} opacity="0.6" />
-        <path d="M75 86 Q100 80 125 86" stroke={liquid} strokeWidth="0.8" fill="none" opacity="0.5" />
-      </svg>
-    </div>
+    <svg viewBox="0 0 220 200" width={size} height={size * 0.9} style={{ overflow: 'visible' }}>
+      {/* Foundation */}
+      <rect x="42" y="174" width="136" height="8" rx="2" fill="none" stroke={accentColor} strokeWidth="1.5" opacity="0.5" />
+      <line x1="20" y1="182" x2="200" y2="182" stroke={accentColor} strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+      {/* Main structure */}
+      <rect x="48" y="54" width="124" height="124" fill="none" stroke={lineColor} strokeWidth="2" rx="2" />
+      {/* Roof */}
+      <path d="M28 60 L110 10 L192 60" fill="none" stroke={lineColor} strokeWidth="2" strokeLinejoin="round" />
+      <line x1="30" y1="58" x2="190" y2="58" stroke={lineColor} strokeWidth="1" opacity="0.3" />
+      {/* Chimney */}
+      <rect x="140" y="20" width="16" height="36" rx="1" fill="none" stroke={lineColor} strokeWidth="1.5" />
+      <line x1="142" y1="20" x2="154" y2="20" stroke={lineColor} strokeWidth="2" strokeLinecap="round" />
+      {/* Chimney smoke */}
+      <path d="M148 20 Q152 14 148 8 Q144 2 148 -4" fill="none" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+      <path d="M154 16 Q158 10 154 4 Q150 -2 154 -8" fill="none" stroke={accentColor} strokeWidth="1" strokeLinecap="round" opacity="0.25" />
+      {/* Structural 'bones' lines */}
+      <line x1="110" y1="54" x2="110" y2="178" stroke={accentColor} strokeWidth="1" opacity="0.35" strokeDasharray="5 4" />
+      <line x1="48" y1="54" x2="172" y2="178" stroke={accentColor} strokeWidth="1" opacity="0.2" strokeDasharray="5 4" />
+      <line x1="172" y1="54" x2="48" y2="178" stroke={accentColor} strokeWidth="1" opacity="0.2" strokeDasharray="5 4" />
+      {/* Horizontal floor lines */}
+      <line x1="48" y1="110" x2="172" y2="110" stroke={accentColor} strokeWidth="0.75" opacity="0.18" strokeDasharray="4 4" />
+      {/* Door */}
+      <rect x="94" y="124" width="32" height="54" rx="2" fill="none" stroke={lineColor} strokeWidth="1.5" />
+      <circle cx="120" cy="152" r="2" fill={accentColor} opacity="0.6" />
+      {/* Windows with mullions */}
+      <rect x="58" y="78" width="22" height="22" rx="1" fill="none" stroke={lineColor} strokeWidth="1.2" />
+      <line x1="69" y1="78" x2="69" y2="100" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
+      <line x1="58" y1="89" x2="80" y2="89" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
+      <rect x="140" y="78" width="22" height="22" rx="1" fill="none" stroke={lineColor} strokeWidth="1.2" />
+      <line x1="151" y1="78" x2="151" y2="100" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
+      <line x1="140" y1="89" x2="162" y2="89" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
+    </svg>
   );
 };
 
-const Logo = ({ size = 26 }) => (
+const HouseIcon = ({ size = 24 }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 10L12 3l9 7v10a2 2 0 01-2 2H5a2 2 0 01-2-2V10z" />
+    <path d="M9 22V12h6v10" />
+  </svg>
+);
+
+const Logo = ({ size = 26, dark = false }) => (
   <a href="#/" className="logo" style={{ fontSize: size }}>
-    <span className="logo-mark" style={{ width: size * 1.23, height: size * 1.23 }} />
-    <span>Latte</span>
+    <span className="logo-mark"><HouseIcon size={size * 1.1} /></span>
+    <span>Good Bones</span>
   </a>
 );
 
@@ -129,7 +141,7 @@ const Nav = ({ route }) => {
             <div ref={ctaMagnetRef} onMouseMove={handleMagneticMove} onMouseLeave={handleMagneticLeave}
                  style={{ transition: 'transform 0.2s ease-out' }}>
               <a href="#/contact" className="btn btn-primary">
-                Order a site →
+                Start a project →
               </a>
             </div>
             <button
@@ -158,7 +170,7 @@ const Nav = ({ route }) => {
         <a href="#/contact" onClick={() => setOpen(false)}
            tabIndex={open ? 0 : -1}
            style={{ marginTop: 16, color: 'var(--caramel-deep)' }}>
-          Order a site →
+          Start a project →
         </a>
       </div>
     </>
@@ -170,9 +182,12 @@ const Footer = () => (
     <div className="container">
       <div className="footer-grid">
         <div>
-          <Logo size={30} />
+          <span className="logo" style={{ color: 'var(--cream)', fontSize: 30, display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span className="logo-mark"><HouseIcon size={33} /></span>
+            <span>Good Bones</span>
+          </span>
           <p style={{ marginTop: 18, opacity: 0.75, fontSize: 14, maxWidth: 280 }}>
-            A small studio that designs, builds, and looks after websites for small businesses. Brewed fresh, served daily.
+            A one-person Canadian studio that designs, builds, and looks after websites for small businesses. Solid foundations, beautiful results — built in Edmonton, end to end.
           </p>
           <div style={{ marginTop: 18, display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--caramel)' }}>
             <MapleLeaf size={14} color="var(--maple)" />
@@ -180,16 +195,16 @@ const Footer = () => (
           </div>
         </div>
         <div>
-          <h4>The Menu</h4>
+          <h4>Services</h4>
           <ul>
             <li><a href="#/services">Web Design</a></li>
-            <li><a href="#/services">Site Management</a></li>
+            <li><a href="#/services">Site Care</a></li>
             <li><a href="#/services">Hosting</a></li>
             <li><a href="#/pricing">Pricing</a></li>
           </ul>
         </div>
         <div>
-          <h4>The Cafe</h4>
+          <h4>Studio</h4>
           <ul>
             <li><a href="#/about">About</a></li>
             <li><a href="#/blog">Journal</a></li>
@@ -199,17 +214,17 @@ const Footer = () => (
           </ul>
         </div>
         <div>
-          <h4>Visit</h4>
+          <h4>Reach Out</h4>
           <ul>
-            <li><a href="mailto:hello@latte.studio">hello@latte.studio</a></li>
-            <li><a href="tel:+18885288393">1-888-LATTE-WEB</a></li>
+            <li><a href="mailto:hello@goodbonesweb.ca">hello@goodbonesweb.ca</a></li>
+            <li>Edmonton, AB</li>
             <li>Open Mon–Fri</li>
-            <li>9am – 6pm ET</li>
+            <li>9am – 5pm MT</li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© 2026 Latte Web Co. All rights reserved.</span>
+        <span>© 2026 Good Bones Web. All rights reserved.</span>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
           Built in Canada, end to end <MapleLeaf size={12} color="var(--caramel)" />
         </span>
@@ -218,7 +233,7 @@ const Footer = () => (
   </footer>
 );
 
-export { Logo, Nav, Footer, CoffeeCup, MapleLeaf, NAV_ITEMS, TiltCard, CountOnView, ScrollCup };
+export { Logo, Nav, Footer, HouseOutline, HouseIcon, MapleLeaf, NAV_ITEMS, TiltCard, CountOnView };
 
 // ── New interactive components ──────────────────────────────────────────────────
 
@@ -290,49 +305,6 @@ const CountOnView = ({ target, suffix = '', duration = 2000, style }) => {
   );
 };
 
-const ScrollCup = ({ size = 200 }) => {
-  const [fill, setFill] = React.useState(0);
-
-  React.useEffect(() => {
-    let rafId = null;
-    const onScroll = () => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
-        setFill(progress);
-      });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  const liquidRy = 0.5 + fill * 7.5;
-  const foamRy = fill > 0.05 ? Math.min(fill * 5.5, 5.5) : 0;
-
-  return (
-    <div className="cup" style={{ width: size, height: size * 1.1 }}>
-      <svg viewBox="0 0 200 220" width={size} height={size * 1.1} style={{ position: 'absolute', top: 0, left: 0 }}>
-        <ellipse cx="100" cy="200" rx="85" ry="10" fill="var(--espresso)" opacity="0.18" />
-        <ellipse cx="100" cy="195" rx="80" ry="9" fill="var(--espresso)" />
-        <path d="M30 90 Q30 80 40 80 L160 80 Q170 80 170 90 L162 175 Q160 192 142 192 L58 192 Q40 192 38 175 Z" fill="var(--espresso)" />
-        <path d="M170 100 Q200 100 200 130 Q200 160 170 160 L170 145 Q185 145 185 130 Q185 115 170 115 Z" fill="var(--espresso)" />
-        <ellipse cx="100" cy="86" rx="65" ry="10" fill="#1A0F0A" />
-        <ellipse cx="100" cy="86" rx="60" ry={liquidRy} fill="var(--caramel-deep)" />
-        {fill > 0.05 && (
-          <ellipse cx="100" cy="86" rx="40" ry={foamRy} fill="var(--foam)" opacity="0.95" />
-        )}
-      </svg>
-    </div>
-  );
-};
-
 // ── Scroll-reveal engine ─────────────────────────────────────────────────────
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -349,13 +321,9 @@ const ScrollCup = ({ size = 200 }) => {
       .forEach(el => io.observe(el));
   }
 
-  // Fire whenever React commits children to #root — catches both the initial
-  // render (which happens long after this script runs, due to Babel compile
-  // time) and subsequent route changes (key={route} on <main> swaps the node).
   const root = document.getElementById('root');
   if (root) new MutationObserver(observe).observe(root, { childList: true });
 
-  // Belt-and-suspenders: also re-scan two frames after every hashchange
   window.addEventListener('hashchange', () =>
     requestAnimationFrame(() => requestAnimationFrame(observe))
   );

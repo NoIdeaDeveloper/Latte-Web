@@ -1,18 +1,18 @@
-/* Latte — shared styles */
+/* Good Bones Web — shared styles */
 
 :root {
-  --cream: #F5EFE6;
-  --cream-2: #EDE3D3;
-  --foam: #FAF6F0;
-  --espresso: #2B1810;
-  --espresso-2: #3D261A;
-  --caramel: #C68B59;
-  --caramel-deep: #A86C3D;
+  --cream: #F7F4EE;
+  --cream-2: #EDE7DD;
+  --foam: #FFFFFF;
+  --espresso: #2B2219;
+  --espresso-2: #5C4E40;
+  --caramel: #C4754E;
+  --caramel-deep: #A85C38;
   --maple: #B8392E;
-  --ink: #1A0F0A;
-  --muted: #7A6A5C;
-  --line: rgba(43, 24, 16, 0.12);
-  --line-strong: rgba(43, 24, 16, 0.22);
+  --ink: #1A1210;
+  --muted: #7A6C5E;
+  --line: rgba(43, 34, 25, 0.12);
+  --line-strong: rgba(43, 34, 25, 0.22);
 
   /* Spacing tokens */
   --space-xs: clamp(8px, 1vw, 12px);
@@ -113,13 +113,13 @@ p { margin: 0 0 1em; }
   background: var(--espresso);
   color: var(--foam);
 }
-.btn-primary:hover { background: var(--ink); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(43, 24, 16, 0.25); }
+.btn-primary:hover { background: var(--ink); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(43, 34, 25, 0.25); }
 .btn-ghost {
   background: transparent;
   color: var(--espresso);
   border: 1px solid var(--line-strong);
 }
-.btn-ghost:hover { background: var(--espresso); color: var(--foam); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(43, 24, 16, 0.14); }
+.btn-ghost:hover { background: var(--espresso); color: var(--foam); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(43, 34, 25, 0.14); }
 .btn-cream {
   background: var(--cream);
   color: var(--espresso);
@@ -132,7 +132,7 @@ p { margin: 0 0 1em; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(245, 239, 230, 0.85);
+  background: rgba(247, 244, 238, 0.85);
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
   border-bottom: 1px solid var(--line);
@@ -163,29 +163,14 @@ p { margin: 0 0 1em; }
 .logo-mark {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
-  background: var(--espresso);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.logo-mark::before {
-  content: '';
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--caramel);
-}
-.logo-mark::after {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--foam);
-  position: absolute;
-  top: 8px;
-  left: 10px;
+.logo-mark svg {
+  width: 28px;
+  height: 28px;
 }
 
 .nav-links {
@@ -300,11 +285,9 @@ body.menu-open { overflow: hidden; }
 .footer-grid li { margin-bottom: 10px; opacity: 0.8; font-size: 14px; }
 .footer-grid li:hover { opacity: 1; }
 .footer .logo { color: var(--cream); font-size: 30px; }
-.footer .logo-mark { background: var(--cream); }
-.footer .logo-mark::before { background: var(--caramel); }
-.footer .logo-mark::after { background: var(--espresso); }
+.footer .logo-mark { color: var(--cream); }
 .footer-bottom {
-  border-top: 1px solid rgba(245, 239, 230, 0.15);
+  border-top: 1px solid rgba(247, 244, 238, 0.15);
   padding-top: 28px;
   display: flex;
   justify-content: space-between;
@@ -359,51 +342,13 @@ section.tight { padding: clamp(48px, 7vw, 80px) 0; }
   border-radius: 18px;
   padding: clamp(24px, 3vw, 32px);
   border: 1px solid var(--line);
-  box-shadow: 0 1px 2px rgba(43, 24, 16, 0.04), 0 3px 8px rgba(43, 24, 16, 0.03);
+  box-shadow: 0 1px 2px rgba(43, 34, 25, 0.04), 0 3px 8px rgba(43, 34, 25, 0.03);
   transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1), border-color 0.25s ease;
 }
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 2px 4px rgba(43, 24, 16, 0.05), 0 8px 24px -4px rgba(43, 24, 16, 0.13), 0 24px 48px -12px rgba(43, 24, 16, 0.09);
-  border-color: rgba(43, 24, 16, 0.2);
-}
-
-/* Steam animation */
-.steam-wrap {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 8px;
-}
-.steam {
-  position: absolute;
-  bottom: 100%;
-  width: 8px;
-  height: 60px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0.7) 60%, rgba(255, 255, 255, 0) 100%);
-  border-radius: 50%;
-  filter: blur(4px);
-  opacity: 0;
-  animation: steam 4s ease-in-out infinite;
-}
-.steam.s1 { left: 18px; animation-delay: 0s; }
-.steam.s2 { left: 36px; animation-delay: 0.8s; height: 70px; }
-.steam.s3 { left: 54px; animation-delay: 1.6s; height: 55px; }
-@keyframes steam {
-  0% { opacity: 0; transform: translateY(20px) scaleX(1); }
-  20% { opacity: 0.85; }
-  100% { opacity: 0; transform: translateY(-40px) scaleX(2); }
-}
-
-/* Coffee cup SVG container */
-.cup {
-  position: relative;
-  display: inline-block;
-}
-
-/* Steam on dark bg */
-.steam-dark {
-  background: linear-gradient(to top, rgba(245, 239, 230, 0) 0%, rgba(245, 239, 230, 0.35) 30%, rgba(245, 239, 230, 0.55) 60%, rgba(245, 239, 230, 0) 100%);
+  box-shadow: 0 2px 4px rgba(43, 34, 25, 0.05), 0 8px 24px -4px rgba(43, 34, 25, 0.13), 0 24px 48px -12px rgba(43, 34, 25, 0.09);
+  border-color: rgba(43, 34, 25, 0.2);
 }
 
 /* Tags */
@@ -425,10 +370,10 @@ section.tight { padding: clamp(48px, 7vw, 80px) 0; }
 .placeholder-img {
   background-image: repeating-linear-gradient(
     -45deg,
-    rgba(43, 24, 16, 0.04) 0,
-    rgba(43, 24, 16, 0.04) 8px,
-    rgba(43, 24, 16, 0.08) 8px,
-    rgba(43, 24, 16, 0.08) 16px
+    rgba(43, 34, 25, 0.04) 0,
+    rgba(43, 34, 25, 0.04) 8px,
+    rgba(43, 34, 25, 0.08) 8px,
+    rgba(43, 34, 25, 0.08) 16px
   );
   background-color: var(--cream-2);
   border-radius: 16px;
@@ -619,7 +564,6 @@ body::after {
 }
 
 /* ── Compositor layer hints ───────────────────────────────────────── */
-.steam          { will-change: transform, opacity; }
 .marquee-track  { will-change: transform; }
 .reveal         { will-change: transform, opacity; }
 .reveal-stagger > * { will-change: transform, opacity; }
@@ -698,7 +642,7 @@ body::after {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.06;
+  opacity: 0.05;
   background-image: radial-gradient(circle, var(--cream) 1px, transparent 1px);
   background-size: 30px 30px;
   animation: drift 20s linear infinite;
@@ -714,7 +658,7 @@ body::after {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at 70% 50%, var(--caramel) 0%, transparent 60%),
-              radial-gradient(ellipse at 30% 20%, var(--maple) 0%, transparent 50%);
+              radial-gradient(ellipse at 30% 20%, rgba(196, 117, 78, 0.6) 0%, transparent 50%);
   opacity: 0.06;
   animation: gradientPulse 15s ease-in-out infinite;
   pointer-events: none;
@@ -761,8 +705,8 @@ body::after {
   pointer-events: none;
 }
 .btn-primary .ripple { background: rgba(255, 255, 255, 0.3); }
-.btn-cream .ripple { background: rgba(43, 24, 16, 0.15); }
-.btn-ghost .ripple { background: rgba(43, 24, 16, 0.12); }
+.btn-cream .ripple { background: rgba(43, 34, 25, 0.15); }
+.btn-ghost .ripple { background: rgba(43, 34, 25, 0.12); }
 @keyframes rippleAnim {
   to { transform: scale(4); opacity: 0; }
 }
@@ -770,8 +714,8 @@ body::after {
   .btn .ripple { animation: none; display: none; }
 }
 
-/* ── Hero cup float ────────────────────────────────────────────────── */
-.hero-cup {
+/* ── Hero icon float ───────────────────────────────────────────────── */
+.hero-icon {
   animation: heroFloat 6s ease-in-out infinite;
 }
 @keyframes heroFloat {
@@ -779,5 +723,5 @@ body::after {
   50% { transform: translateY(-14px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-cup { animation: none; }
+  .hero-icon { animation: none; }
 }
