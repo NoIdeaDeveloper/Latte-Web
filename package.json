@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/NoIdeaDeveloper/Latte-Web#readme",
   "devDependencies": {
-    "esbuild": "^0.28.0"
+    "esbuild": "^0.28.1"
   }
 }
