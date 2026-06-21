@@ -1,30 +1,75 @@
 // pages-home.jsx — Home page
 
-import { HouseOutline, MapleLeaf, TiltCard, CountOnView } from './shared.jsx';
+import { HouseOutline, MapleLeaf, CountOnView } from './shared.jsx';
+
+const ROTATE_WORDS = ['bakeries', 'contractors', 'clinics', 'cafés', 'studios', 'real people'];
+
+const RotatingWord = () => {
+  const [index, setIndex] = React.useState(0);
+  React.useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const id = setInterval(() => setIndex(i => (i + 1) % ROTATE_WORDS.length), 2400);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <>
+      <span className="sr-only">small businesses</span>
+      <span className="rotator" aria-hidden="true">
+        {ROTATE_WORDS.map((word, i) => (
+          <span key={word} className={`rotator-word ${i === index ? 'on' : ''}`}>
+            {word}
+          </span>
+        ))}
+      </span>
+    </>
+  );
+};
+
+const SERVICES = [
+  { num: '01', name: 'Web Design', desc: 'Custom-designed sites built from the ground up. Every pixel crafted to your brand — no templates, no shortcuts.', from: 'from $2,400' },
+  { num: '02', name: 'Site Care', desc: 'Updates, backups, security, and content edits — handled quietly every month so you can run your business.', from: 'from $95/mo' },
+  { num: '03', name: 'Hosting', desc: 'Fast, green-powered Canadian servers with SSL, CDN, and daily backups. Your data stays on Canadian soil.', from: 'from $15/mo' },
+];
 
 const HomePage = () => {
   return (
     <div className="page-enter">
-      {/* HERO */}
-      <section style={{ padding: 'clamp(56px, 8vw, 80px) 0 clamp(40px, 6vw, 60px)', position: 'relative', overflow: 'hidden' }}>
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div className="row-wrap" style={{ justifyContent: 'space-between' }}>
-            <div style={{ flex: '1 1 540px', maxWidth: 760 }}>
-              <span className="canadian-badge" style={{ marginBottom: 24 }}>
-                <MapleLeaf size={12} color="var(--maple)" /> Canadian Owned & Operated
-              </span>
-              <h1 className="serif" style={{ marginBottom: 28 }}>
-                Websites with <em style={{ fontStyle: 'italic', color: 'var(--caramel-deep)' }}>good bones</em>.
-              </h1>
-              <p className="body-lg" style={{ maxWidth: 560, marginBottom: 36 }}>
-                Good Bones Web is a one-person Canadian studio that designs, builds, and looks after websites for small businesses. Custom work, honest pricing, and a solid foundation — from quick fixes to full renovations.
-              </p>
-              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                <a href="#/pricing" className="btn btn-primary">See pricing →</a>
-                <a href="#/services" className="btn btn-ghost">Our services</a>
+      {/* HERO — full-viewport blueprint */}
+      <section className="hero-bp">
+        <div className="hero-bp-inner">
+          <div className="hero-annot hero-annot-tl mono" aria-hidden="true">+ Fig. 01 — The Foundation</div>
+          <div className="hero-annot hero-annot-tr mono" aria-hidden="true">DWG № GB-2026 · Scale 1:1</div>
+
+          <div className="container" style={{ width: '100%', display: 'flex', flexDirection: 'column', flex: 1 }}>
+            <div className="hero-main">
+              <div className="hero-copy">
+                <span className="canadian-badge">
+                  <MapleLeaf size={12} color="var(--maple)" /> Canadian Owned & Operated
+                </span>
+                <h1 className="hero-h1 serif">
+                  <span className="hero-line text-outline">Websites</span>
+                  <span className="hero-line">with <em>good bones</em>.</span>
+                </h1>
+                <p className="hero-lede">
+                  Design, hosting, and ongoing care from one Canadian studio — websites
+                  hand-coded for <RotatingWord />, end to end.
+                </p>
+                <div className="hero-ctas">
+                  <a href="#/pricing" className="btn btn-primary">See pricing →</a>
+                  <a href="#/services" className="btn btn-ghost">Our services</a>
+                </div>
               </div>
 
-              <div className="stat-row" style={{ marginTop: 'clamp(40px, 6vw, 56px)' }}>
+              <div className="hero-house" aria-hidden="true">
+                <HouseOutline size={360} className="house-draw" />
+                <div className="measure mono">
+                  <span className="m-tick" />100% hand-coded<span className="m-tick" />
+                </div>
+              </div>
+            </div>
+
+            <div className="hero-foot">
+              <div className="stat-row">
                 <div>
                   <CountOnView target={60} suffix="+" duration={2000} style={{ fontSize: 'clamp(30px, 4vw, 36px)' }} />
                   <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginTop: 4 }}>Sites Built</div>
@@ -36,14 +81,14 @@ const HomePage = () => {
                 </div>
                 <div className="divider" />
                 <div>
-                  <div className="serif" style={{ fontSize: 'clamp(30px, 4vw, 36px)' }}>100%</div>
-                  <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginTop: 4 }}>Hand-Coded</div>
+                  <div className="serif" style={{ fontSize: 'clamp(30px, 4vw, 36px)' }}>3–5 wks</div>
+                  <div className="mono" style={{ color: 'var(--muted)', fontSize: 11, marginTop: 4 }}>Concept to Launch</div>
                 </div>
               </div>
-            </div>
-
-            <div style={{ flex: '1 1 320px', maxWidth: 420, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <div className="hero-icon"><HouseOutline size={280} /></div>
+              <div className="hero-scroll mono" aria-hidden="true">
+                Scroll
+                <span className="scroll-line" />
+              </div>
             </div>
           </div>
         </div>
@@ -71,7 +116,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* SERVICES PREVIEW */}
+      {/* SERVICES — editorial rows */}
       <section>
         <div className="container">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 'clamp(32px, 5vw, 48px)', flexWrap: 'wrap', gap: 24 }}>
@@ -84,21 +129,15 @@ const HomePage = () => {
             <a href="#/services" className="btn btn-ghost">All services →</a>
           </div>
 
-          <div className="reveal-stagger grid-auto-260">
-            {[
-              { name: 'Web Design', sub: 'Design & Development', desc: 'Custom-designed websites built from the ground up. Every pixel crafted to your brand — no templates, no page builders, no shortcuts.', from: '$2,400', notes: 'Strategy · Design · Build' },
-              { name: 'Site Care', sub: 'Maintenance & Support', desc: 'Updates, backups, security, content edits — all the ongoing care your site needs, handled monthly so you can focus on your business.', from: '$95/mo', notes: 'Updates · Edits · Reports' },
-              { name: 'Hosting', sub: 'Fast & Canadian', desc: 'Lightning-fast Canadian hosting on green-powered servers. SSL, CDN, and daily backups all included — your data stays on Canadian soil.', from: '$15/mo', notes: 'CDN · SSL · Backups' },
-            ].map((b, i) => (
-              <TiltCard key={i} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div className="mono" style={{ color: 'var(--caramel-deep)', marginBottom: 16 }}>0{i+1} / {b.sub}</div>
-                <h3 className="serif" style={{ fontSize: 'clamp(24px, 2.8vw, 32px)', marginBottom: 8 }}>{b.name}</h3>
-                <p style={{ color: 'var(--espresso-2)', fontSize: 15, marginBottom: 24, flex: 1 }}>{b.desc}</p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px dashed var(--line-strong)', paddingTop: 16 }}>
-                  <span className="mono" style={{ color: 'var(--muted)', fontSize: 11 }}>{b.notes}</span>
-                  <span className="serif" style={{ fontSize: 22, color: 'var(--espresso)' }}>from {b.from}</span>
-                </div>
-              </TiltCard>
+          <div className="svc-list reveal-stagger">
+            {SERVICES.map(s => (
+              <a key={s.num} href="#/services" className="svc-row">
+                <span className="svc-num mono">{s.num}</span>
+                <span className="svc-name">{s.name}</span>
+                <span className="svc-desc">{s.desc}</span>
+                <span className="svc-price">{s.from}</span>
+                <span className="svc-arrow" aria-hidden="true">→</span>
+              </a>
             ))}
           </div>
         </div>
@@ -140,13 +179,13 @@ const HomePage = () => {
 
           <div className="reveal-stagger grid-auto-220">
             {[
-                { step: '01', title: 'Discovery', desc: 'We sit down to learn about your business, customers, and goals — what works, what doesn\'t, and what comes next.' },
+              { step: '01', title: 'Discovery', desc: 'We sit down to learn about your business, customers, and goals — what works, what doesn\'t, and what comes next.' },
               { step: '02', title: 'Blueprint', desc: 'Sitemap, wireframes, content plan. We map out every detail before we touch a pixel.' },
               { step: '03', title: 'Build', desc: 'Visual design and development with regular check-ins. No surprises, no last-minute changes.' },
-                { step: '04', title: 'Care', desc: 'Launch is just the start. We keep your site secure, fast, and current — month after month, indefinitely.' },
+              { step: '04', title: 'Care', desc: 'Launch is just the start. We keep your site secure, fast, and current — month after month, indefinitely.' },
             ].map((p, i) => (
               <div key={i}>
-                <div className="serif" style={{ fontSize: 'clamp(44px, 5vw, 56px)', color: 'var(--caramel)', marginBottom: 12, lineHeight: 1 }}>{p.step}</div>
+                <div className="proc-num" aria-hidden="true">{p.step}</div>
                 <h3 className="serif" style={{ fontSize: 'clamp(20px, 2.2vw, 26px)', marginBottom: 10 }}>{p.title}</h3>
                 <p style={{ color: 'var(--espresso-2)', fontSize: 15 }}>{p.desc}</p>
               </div>
@@ -155,38 +194,30 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
+      {/* TESTIMONIAL — naked oversized quote */}
       <section className="tight reveal">
-        <div className="container">
-          <div style={{ background: 'var(--foam)', borderRadius: 24, padding: 'clamp(32px, 6vw, 80px)', border: '1px solid var(--line)', position: 'relative' }}>
-            <div className="serif" style={{ fontSize: 'clamp(72px, 10vw, 120px)', color: 'var(--caramel)', lineHeight: 0.6, position: 'absolute', top: 'clamp(28px, 4vw, 40px)', left: 'clamp(20px, 3vw, 32px)', opacity: 0.4 }}>"</div>
-            <div style={{ maxWidth: 820, margin: '0 auto', textAlign: 'center', position: 'relative' }}>
-              <p className="serif" style={{ fontSize: 'clamp(20px, 3vw, 36px)', lineHeight: 1.3, marginBottom: 'clamp(24px, 3vw, 32px)' }}>
-                We tried building it ourselves. Twice. Good Bones rebuilt the whole thing in three weeks — and it's been turning heads ever since.
-              </p>
-              <div className="placeholder-img" style={{ width: 56, height: 56, borderRadius: '50%', margin: '0 auto 12px', minHeight: 0 }}>
-                AV
-              </div>
-              <div className="mono" style={{ fontSize: 12, color: 'var(--muted)' }}>
-                Anika V. · Maple & Birch Bakery · Edmonton, AB
-              </div>
-            </div>
+        <div className="container" style={{ maxWidth: 940, textAlign: 'center' }}>
+          <div className="quote-mark" aria-hidden="true">"</div>
+          <p className="serif" style={{ fontSize: 'clamp(24px, 3.4vw, 42px)', lineHeight: 1.25, letterSpacing: '-0.01em', margin: '0 0 28px', textWrap: 'balance' }}>
+            We tried building it ourselves. Twice. Good Bones rebuilt the whole thing in three weeks — and it's been <em style={{ color: 'var(--caramel-deep)' }}>turning heads</em> ever since.
+          </p>
+          <div className="mono" style={{ fontSize: 12, color: 'var(--muted)' }}>
+            Anika V. · Maple & Birch Bakery · Edmonton, AB
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="tight reveal">
-        <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: 760, margin: '0 auto' }}>
-            <h2 className="serif" style={{ marginBottom: 24 }}>
-              Ready to <em style={{ fontStyle: 'italic', color: 'var(--caramel-deep)' }}>get started</em>?
-            </h2>
-            <p style={{ fontSize: 'clamp(16px, 1.5vw, 18px)', color: 'var(--espresso-2)', marginBottom: 32 }}>
-              Tell us about your project. We'll respond within one business day with a clear quote, timeline, and a no-pressure conversation.
-            </p>
-            <a href="#/contact" className="btn btn-primary">Get a quote →</a>
-          </div>
+      {/* CTA — giant type */}
+      <section className="reveal">
+        <div className="container" style={{ textAlign: 'center' }}>
+          <span className="eyebrow">No pressure, ever</span>
+          <h2 className="serif" style={{ fontSize: 'clamp(48px, 9vw, 130px)', lineHeight: 1, margin: '16px 0 28px', letterSpacing: '-0.02em' }}>
+            Let's <em style={{ fontStyle: 'italic', color: 'var(--caramel-deep)' }}>build</em>.
+          </h2>
+          <p style={{ fontSize: 'clamp(16px, 1.5vw, 19px)', color: 'var(--espresso-2)', maxWidth: 560, margin: '0 auto 36px' }}>
+            Tell us about your project. We'll respond within one business day with a clear quote, a real timeline, and zero sales pitch.
+          </p>
+          <a href="#/contact" className="btn btn-primary btn-lg">Start a project →</a>
         </div>
       </section>
     </div>

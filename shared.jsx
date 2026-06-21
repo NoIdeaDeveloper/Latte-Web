@@ -6,41 +6,41 @@ const MapleLeaf = ({ size = 12, color = 'currentColor' }) => (
   </svg>
 );
 
-const HouseOutline = ({ size = 280, dark = false }) => {
+const HouseOutline = ({ size = 280, dark = false, className = '' }) => {
   const lineColor = dark ? 'var(--cream)' : 'var(--espresso)';
   const accentColor = 'var(--caramel)';
   return (
-    <svg viewBox="0 0 220 200" width={size} height={size * 0.9} style={{ overflow: 'visible' }}>
+    <svg viewBox="0 0 220 200" width={size} height={size * 0.9} className={className} style={{ overflow: 'visible' }}>
       {/* Foundation */}
-      <rect x="42" y="174" width="136" height="8" rx="2" fill="none" stroke={accentColor} strokeWidth="1.5" opacity="0.5" />
-      <line x1="20" y1="182" x2="200" y2="182" stroke={accentColor} strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+      <rect x="42" y="174" width="136" height="8" rx="2" pathLength="1" fill="none" stroke={accentColor} strokeWidth="1.5" opacity="0.5" />
+      <line x1="20" y1="182" x2="200" y2="182" pathLength="1" stroke={accentColor} strokeWidth="3" strokeLinecap="round" opacity="0.6" />
       {/* Main structure */}
-      <rect x="48" y="54" width="124" height="124" fill="none" stroke={lineColor} strokeWidth="2" rx="2" />
+      <rect x="48" y="54" width="124" height="124" pathLength="1" fill="none" stroke={lineColor} strokeWidth="2" rx="2" />
       {/* Roof */}
-      <path d="M28 60 L110 10 L192 60" fill="none" stroke={lineColor} strokeWidth="2" strokeLinejoin="round" />
-      <line x1="30" y1="58" x2="190" y2="58" stroke={lineColor} strokeWidth="1" opacity="0.3" />
+      <path d="M28 60 L110 10 L192 60" pathLength="1" fill="none" stroke={lineColor} strokeWidth="2" strokeLinejoin="round" />
+      <line x1="30" y1="58" x2="190" y2="58" pathLength="1" stroke={lineColor} strokeWidth="1" opacity="0.3" />
       {/* Chimney */}
-      <rect x="140" y="20" width="16" height="36" rx="1" fill="none" stroke={lineColor} strokeWidth="1.5" />
-      <line x1="142" y1="20" x2="154" y2="20" stroke={lineColor} strokeWidth="2" strokeLinecap="round" />
+      <rect x="140" y="20" width="16" height="36" rx="1" pathLength="1" fill="none" stroke={lineColor} strokeWidth="1.5" />
+      <line x1="142" y1="20" x2="154" y2="20" pathLength="1" stroke={lineColor} strokeWidth="2" strokeLinecap="round" />
       {/* Chimney smoke */}
-      <path d="M148 20 Q152 14 148 8 Q144 2 148 -4" fill="none" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
-      <path d="M154 16 Q158 10 154 4 Q150 -2 154 -8" fill="none" stroke={accentColor} strokeWidth="1" strokeLinecap="round" opacity="0.25" />
+      <path d="M148 20 Q152 14 148 8 Q144 2 148 -4" pathLength="1" fill="none" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+      <path d="M154 16 Q158 10 154 4 Q150 -2 154 -8" pathLength="1" fill="none" stroke={accentColor} strokeWidth="1" strokeLinecap="round" opacity="0.25" />
       {/* Structural 'bones' lines */}
-      <line x1="110" y1="54" x2="110" y2="178" stroke={accentColor} strokeWidth="1" opacity="0.35" strokeDasharray="5 4" />
-      <line x1="48" y1="54" x2="172" y2="178" stroke={accentColor} strokeWidth="1" opacity="0.2" strokeDasharray="5 4" />
-      <line x1="172" y1="54" x2="48" y2="178" stroke={accentColor} strokeWidth="1" opacity="0.2" strokeDasharray="5 4" />
+      <line x1="110" y1="54" x2="110" y2="178" pathLength="1" stroke={accentColor} strokeWidth="1" opacity="0.35" strokeDasharray="5 4" />
+      <line x1="48" y1="54" x2="172" y2="178" pathLength="1" stroke={accentColor} strokeWidth="1" opacity="0.2" strokeDasharray="5 4" />
+      <line x1="172" y1="54" x2="48" y2="178" pathLength="1" stroke={accentColor} strokeWidth="1" opacity="0.2" strokeDasharray="5 4" />
       {/* Horizontal floor lines */}
-      <line x1="48" y1="110" x2="172" y2="110" stroke={accentColor} strokeWidth="0.75" opacity="0.18" strokeDasharray="4 4" />
+      <line x1="48" y1="110" x2="172" y2="110" pathLength="1" stroke={accentColor} strokeWidth="0.75" opacity="0.18" strokeDasharray="4 4" />
       {/* Door */}
-      <rect x="94" y="124" width="32" height="54" rx="2" fill="none" stroke={lineColor} strokeWidth="1.5" />
+      <rect x="94" y="124" width="32" height="54" rx="2" pathLength="1" fill="none" stroke={lineColor} strokeWidth="1.5" />
       <circle cx="120" cy="152" r="2" fill={accentColor} opacity="0.6" />
       {/* Windows with mullions */}
-      <rect x="58" y="78" width="22" height="22" rx="1" fill="none" stroke={lineColor} strokeWidth="1.2" />
-      <line x1="69" y1="78" x2="69" y2="100" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
-      <line x1="58" y1="89" x2="80" y2="89" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
-      <rect x="140" y="78" width="22" height="22" rx="1" fill="none" stroke={lineColor} strokeWidth="1.2" />
-      <line x1="151" y1="78" x2="151" y2="100" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
-      <line x1="140" y1="89" x2="162" y2="89" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
+      <rect x="58" y="78" width="22" height="22" rx="1" pathLength="1" fill="none" stroke={lineColor} strokeWidth="1.2" />
+      <line x1="69" y1="78" x2="69" y2="100" pathLength="1" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
+      <line x1="58" y1="89" x2="80" y2="89" pathLength="1" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
+      <rect x="140" y="78" width="22" height="22" rx="1" pathLength="1" fill="none" stroke={lineColor} strokeWidth="1.2" />
+      <line x1="151" y1="78" x2="151" y2="100" pathLength="1" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
+      <line x1="140" y1="89" x2="162" y2="89" pathLength="1" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
     </svg>
   );
 };
