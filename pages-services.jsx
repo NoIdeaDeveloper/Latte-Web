@@ -116,9 +116,10 @@ const PricingPage = () => {
           </p>
 
           {/* Billing toggle */}
-          <div style={{ display: 'inline-flex', background: 'var(--foam)', border: '1px solid var(--line)', borderRadius: 999, padding: 4, position: 'relative', maxWidth: '100%', flexWrap: 'wrap' }}>
+          <div role="group" aria-label="Billing period" style={{ display: 'inline-flex', background: 'var(--foam)', border: '1px solid var(--line)', borderRadius: 999, padding: 4, position: 'relative', maxWidth: '100%', flexWrap: 'wrap' }}>
             {['monthly', 'annual'].map(b => (
               <button key={b} onClick={() => setBilling(b)}
+                aria-pressed={billing === b}
                 style={{
                   position: 'relative', zIndex: 2,
                   padding: '10px 22px', borderRadius: 999, border: 'none',

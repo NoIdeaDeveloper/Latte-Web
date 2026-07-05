@@ -79,6 +79,8 @@ function App() {
       r.setProperty('--muted', '#8C7D6F');
       r.setProperty('--line', 'rgba(247, 244, 238, 0.1)');
       r.setProperty('--line-strong', 'rgba(247, 244, 238, 0.2)');
+      r.setProperty('--nav-bg', 'rgba(28, 24, 21, 0.85)');
+      r.setProperty('--btn-primary-fg', '#1C1815');
     } else {
       r.setProperty('--espresso-2', '#5C4E40');
       r.setProperty('--muted', '#6B5D4F');

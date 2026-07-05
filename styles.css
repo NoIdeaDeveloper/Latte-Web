@@ -13,6 +13,8 @@
   --muted: #6B5D4F;
   --line: rgba(43, 34, 25, 0.12);
   --line-strong: rgba(43, 34, 25, 0.22);
+  --nav-bg: rgba(247, 244, 238, 0.85);
+  --btn-primary-fg: #FFFFFF;
 
 
   --serif: 'Newsreader', 'Cormorant Garamond', 'Iowan Old Style', 'Apple Garamond', 'Palatino', Georgia, serif;
@@ -117,7 +119,7 @@ p { margin: 0 0 1em; }
 }
 .btn-primary {
   background: var(--espresso);
-  color: var(--foam);
+  color: var(--btn-primary-fg);
 }
 .btn-primary:hover { background: var(--ink); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(43, 34, 25, 0.25); }
 .btn-ghost {
@@ -138,7 +140,7 @@ p { margin: 0 0 1em; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(247, 244, 238, 0.85);
+  background: var(--nav-bg);
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
   border-bottom: 1px solid var(--line);
@@ -253,6 +255,13 @@ body.menu-open { overflow: hidden; }
   padding: 14px 0;
   border-bottom: 1px solid var(--line);
   color: var(--espresso);
+}
+.mobile-menu a.active {
+  color: var(--caramel-deep);
+}
+.mobile-menu a.active::before {
+  content: '→ ';
+  color: var(--caramel);
 }
 
 @media (max-width: 860px) {
@@ -661,6 +670,26 @@ body::after {
   transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
+/* Persistent active-route indicator (visible without hover) */
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -22px;
+  height: 2px;
+  background: var(--caramel-deep);
+  border-radius: 1px;
+}
+/* ── Disabled buttons ───────────────────────────────────────────────── */
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+.btn:disabled:hover { background: var(--espresso); }
 /* ── Button ripple ─────────────────────────────────────────────────── */
 .btn .ripple {
   position: absolute;
@@ -873,6 +902,12 @@ body::after {
   animation: fillIn 0.5s ease forwards 1.6s;
 }
 @keyframes fillIn { to { fill-opacity: 1; } }
+/* Subtle fills (walls/roof/glass/door/shrubs) fade in after the stroke draw */
+.house-draw [data-fill] {
+  opacity: 0;
+  animation: fillFade 0.8s ease forwards 1.4s;
+}
+@keyframes fillFade { to { opacity: 1; } }
 
 /* ── Daring homepage: editorial service rows ──────────────────────── */
 .svc-row:first-child { border-top: 1px solid var(--line-strong); }
@@ -951,6 +986,7 @@ body::after {
   .house-draw :is(path, line, rect):not([stroke-dasharray]) { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
   .house-draw [stroke-dasharray] { animation: none; stroke-opacity: 1; }
   .house-draw circle { animation: none; fill-opacity: 1; }
+  .house-draw [data-fill] { animation: none; opacity: 1; }
   .btn .ripple { animation: none; display: none; }
   .nav-underline { transition: none; }
   .tilt-card { transition: none; }
@@ -958,4 +994,5 @@ body::after {
   .reveal h1 em, .reveal h2 em, .reveal h3 em { background-size: 100% 100%; transition: none; }
   .page-enter { animation: none; }
   .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .marquee-track { animation: none; }
 }

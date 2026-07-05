@@ -9,38 +9,261 @@ const MapleLeaf = ({ size = 12, color = 'currentColor' }) => (
 const HouseOutline = ({ size = 280, dark = false, className = '' }) => {
   const lineColor = dark ? 'var(--cream)' : 'var(--espresso)';
   const accentColor = 'var(--caramel)';
+  const uid = `h${dark ? 'd' : 'l'}`;
   return (
     <svg viewBox="0 0 220 200" width={size} height={size * 0.9} className={className} style={{ overflow: 'visible' }}>
-      {/* Foundation */}
-      <rect x="42" y="174" width="136" height="8" rx="2" pathLength="1" fill="none" stroke={accentColor} strokeWidth="1.5" opacity="0.5" />
-      <line x1="20" y1="182" x2="200" y2="182" pathLength="1" stroke={accentColor} strokeWidth="3" strokeLinecap="round" opacity="0.6" />
-      {/* Main structure */}
-      <rect x="48" y="54" width="124" height="124" pathLength="1" fill="none" stroke={lineColor} strokeWidth="2" rx="2" />
-      {/* Roof */}
-      <path d="M28 60 L110 10 L192 60" pathLength="1" fill="none" stroke={lineColor} strokeWidth="2" strokeLinejoin="round" />
-      <line x1="30" y1="58" x2="190" y2="58" pathLength="1" stroke={lineColor} strokeWidth="1" opacity="0.3" />
-      {/* Chimney */}
-      <rect x="140" y="20" width="16" height="36" rx="1" pathLength="1" fill="none" stroke={lineColor} strokeWidth="1.5" />
-      <line x1="142" y1="20" x2="154" y2="20" pathLength="1" stroke={lineColor} strokeWidth="2" strokeLinecap="round" />
+      <defs>
+        <linearGradient id={`${uid}-sky`} x1="0" y1="0" x2="0" y2="1">
+          {dark
+            ? (<><stop offset="0%" stopColor="rgba(247,244,238,0.05)" /><stop offset="100%" stopColor="rgba(247,244,238,0)" /></>)
+            : (<><stop offset="0%" stopColor="rgba(196,165,116,0.14)" /><stop offset="100%" stopColor="rgba(196,165,116,0.02)" /></>)}
+        </linearGradient>
+        <linearGradient id={`${uid}-wall`} x1="0" y1="0" x2="1" y2="0">
+          {dark
+            ? (<><stop offset="0%" stopColor="rgba(247,244,238,0.14)" /><stop offset="55%" stopColor="rgba(247,244,238,0.08)" /><stop offset="100%" stopColor="rgba(247,244,238,0.03)" /></>)
+            : (<><stop offset="0%" stopColor="rgba(43,34,25,0.10)" /><stop offset="55%" stopColor="rgba(43,34,25,0.05)" /><stop offset="100%" stopColor="rgba(43,34,25,0.02)" /></>)}
+        </linearGradient>
+        <linearGradient id={`${uid}-roof`} x1="0" y1="0" x2="0" y2="1">
+          {dark
+            ? (<><stop offset="0%" stopColor="rgba(196,165,116,0.28)" /><stop offset="100%" stopColor="rgba(196,165,116,0.10)" /></>)
+            : (<><stop offset="0%" stopColor="rgba(196,165,116,0.42)" /><stop offset="100%" stopColor="rgba(196,165,116,0.18)" /></>)}
+        </linearGradient>
+        <linearGradient id={`${uid}-glass`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="rgba(255,231,167,0.78)" />
+          <stop offset="100%" stopColor="rgba(196,165,116,0.55)" />
+        </linearGradient>
+        <linearGradient id={`${uid}-door`} x1="0" y1="0" x2="1" y2="0">
+          {dark
+            ? (<><stop offset="0%" stopColor="rgba(196,165,116,0.4)" /><stop offset="100%" stopColor="rgba(196,165,116,0.22)" /></>)
+            : (<><stop offset="0%" stopColor="rgba(43,34,25,0.45)" /><stop offset="100%" stopColor="rgba(43,34,25,0.28)" /></>)}
+        </linearGradient>
+        <radialGradient id={`${uid}-shadow`} cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0%" stopColor="rgba(43,34,25,0.18)" />
+          <stop offset="100%" stopColor="rgba(43,34,25,0)" />
+        </radialGradient>
+        <linearGradient id={`${uid}-brick`} x1="0" y1="0" x2="1" y2="0">
+          {dark
+            ? (<><stop offset="0%" stopColor="rgba(247,244,238,0.10)" /><stop offset="100%" stopColor="rgba(247,244,238,0.04)" /></>)
+            : (<><stop offset="0%" stopColor="rgba(43,34,25,0.22)" /><stop offset="100%" stopColor="rgba(43,34,25,0.10)" /></>)}
+        </linearGradient>
+        <linearGradient id={`${uid}-stone`} x1="0" y1="0" x2="0" y2="1">
+          {dark
+            ? (<><stop offset="0%" stopColor="rgba(247,244,238,0.10)" /><stop offset="100%" stopColor="rgba(247,244,238,0.04)" /></>)
+            : (<><stop offset="0%" stopColor="rgba(43,34,25,0.16)" /><stop offset="100%" stopColor="rgba(43,34,25,0.08)" /></>)}
+        </linearGradient>
+        <linearGradient id={`${uid}-leaf`} x1="0" y1="0" x2="0" y2="1">
+          {dark
+            ? (<><stop offset="0%" stopColor="rgba(196,165,116,0.22)" /><stop offset="100%" stopColor="rgba(196,165,116,0.10)" /></>)
+            : (<><stop offset="0%" stopColor="rgba(120,150,90,0.28)" /><stop offset="100%" stopColor="rgba(120,150,90,0.14)" /></>)}
+        </linearGradient>
+      </defs>
+
+      {/* Soft ground shadow */}
+      <ellipse cx="110" cy="184" rx="104" ry="9" pathLength="1" fill={`url(#${uid}-shadow)`} data-fill />
+      {/* Sky wash */}
+      <rect x="0" y="0" width="220" height="200" pathLength="1" fill={`url(#${uid}-sky)`} data-fill />
+
+      {/* Clouds (light mode) / stars (dark mode) */}
+      {dark ? (<>
+        <circle cx="32" cy="30" r="0.9" fill="var(--cream)" opacity="0.7" />
+        <circle cx="48" cy="20" r="0.7" fill="var(--cream)" opacity="0.5" />
+        <circle cx="188" cy="26" r="0.8" fill="var(--cream)" opacity="0.6" />
+        <circle cx="200" cy="42" r="0.6" fill="var(--cream)" opacity="0.4" />
+        <circle cx="18" cy="50" r="0.6" fill="var(--cream)" opacity="0.4" />
+      </>) : (<>
+        <ellipse cx="32" cy="34" rx="14" ry="5" fill="var(--cream)" opacity="0.55" />
+        <ellipse cx="40" cy="30" rx="10" ry="4.5" fill="var(--cream)" opacity="0.5" />
+        <ellipse cx="188" cy="30" rx="16" ry="5" fill="var(--cream)" opacity="0.55" />
+        <ellipse cx="196" cy="36" rx="11" ry="4" fill="var(--cream)" opacity="0.45" />
+      </>)}
+
+      {/* Ground line */}
+      <line x1="14" y1="184" x2="206" y2="184" pathLength="1" stroke={accentColor} strokeWidth="3" strokeLinecap="round" opacity="0.55" />
+      {/* Grass tufts */}
+      <path d="M24 184 l2 -5 m-1 5 l3 -4 m0 4 l2 -5" stroke={lineColor} strokeWidth="0.6" opacity="0.3" fill="none" pathLength="1" />
+      <path d="M196 184 l2 -5 m-1 5 l3 -4 m0 4 l2 -5" stroke={lineColor} strokeWidth="0.6" opacity="0.3" fill="none" pathLength="1" />
+      <path d="M80 184 l2 -4 m1 4 l-2 -4 m3 4 l1 -5" stroke={lineColor} strokeWidth="0.5" opacity="0.25" fill="none" pathLength="1" />
+      <path d="M150 184 l2 -4 m1 4 l-2 -4 m3 4 l1 -5" stroke={lineColor} strokeWidth="0.5" opacity="0.25" fill="none" pathLength="1" />
+
+      {/* Foundation (stone texture) */}
+      <rect x="46" y="168" width="128" height="16" rx="2" pathLength="1" fill={`url(#${uid}-stone)`} data-fill stroke={lineColor} strokeWidth="1.5" opacity="0.6" />
+      <line x1="48" y1="174" x2="172" y2="174" pathLength="1" stroke={lineColor} strokeWidth="0.5" opacity="0.3" />
+      <line x1="64" y1="168" x2="64" y2="174" stroke={lineColor} strokeWidth="0.4" opacity="0.25" pathLength="1" />
+      <line x1="86" y1="168" x2="86" y2="174" stroke={lineColor} strokeWidth="0.4" opacity="0.25" pathLength="1" />
+      <line x1="118" y1="168" x2="118" y2="174" stroke={lineColor} strokeWidth="0.4" opacity="0.25" pathLength="1" />
+      <line x1="146" y1="168" x2="146" y2="174" stroke={lineColor} strokeWidth="0.4" opacity="0.25" pathLength="1" />
+      <line x1="56" y1="174" x2="56" y2="184" stroke={lineColor} strokeWidth="0.4" opacity="0.25" pathLength="1" />
+      <line x1="92" y1="174" x2="92" y2="184" stroke={lineColor} strokeWidth="0.4" opacity="0.25" pathLength="1" />
+      <line x1="132" y1="174" x2="132" y2="184" stroke={lineColor} strokeWidth="0.4" opacity="0.25" pathLength="1" />
+      <line x1="164" y1="174" x2="164" y2="184" stroke={lineColor} strokeWidth="0.4" opacity="0.25" pathLength="1" />
+
+      {/* Walls with shading */}
+      <rect x="50" y="48" width="120" height="122" rx="2" pathLength="1" fill={`url(#${uid}-wall)`} data-fill stroke={lineColor} strokeWidth="2" />
+      {/* Corner boards (vertical trim at wall corners) */}
+      <line x1="50" y1="48" x2="50" y2="170" stroke={lineColor} strokeWidth="1.4" opacity="0.55" pathLength="1" />
+      <line x1="170" y1="48" x2="170" y2="170" stroke={lineColor} strokeWidth="1.4" opacity="0.55" pathLength="1" />
+      {/* Water table (horizontal trim at wall base) */}
+      <line x1="50" y1="165" x2="170" y2="165" stroke={lineColor} strokeWidth="1.2" opacity="0.45" pathLength="1" />
+      {/* Siding courses (denser) */}
+      {[60,72,84,96,108,120,132,144,156].map(y => (
+        <line key={y} x1="50" y1={y} x2="170" y2={y} pathLength="1" stroke={lineColor} strokeWidth="0.45" opacity="0.16" />
+      ))}
+
+      {/* Roof: gable + overhang */}
+      <path d="M22 58 L110 10 L198 58 Z" pathLength="1" fill={`url(#${uid}-roof)`} data-fill stroke={lineColor} strokeWidth="2" strokeLinejoin="round" />
+      <line x1="26" y1="56" x2="194" y2="56" pathLength="1" stroke={lineColor} strokeWidth="1" opacity="0.35" />
+      <line x1="24" y1="58" x2="196" y2="58" pathLength="1" stroke={lineColor} strokeWidth="0.8" opacity="0.4" />
+      {/* Shingle courses — left slope (denser) */}
+      {[['30','54','50','44'],['52','44','72','34'],['74','34','94','24'],['96','24','108','18']].map((s,i) => (
+        <line key={`ls${i}`} x1={s[0]} y1={s[1]} x2={s[2]} y2={s[3]} pathLength="1" stroke={lineColor} strokeWidth="0.55" opacity="0.3" />
+      ))}
+      {/* Shingle courses — right slope (denser) */}
+      {[['190','54','170','44'],['168','44','148','34'],['146','34','126','24'],['124','24','112','18']].map((s,i) => (
+        <line key={`rs${i}`} x1={s[0]} y1={s[1]} x2={s[2]} y2={s[3]} pathLength="1" stroke={lineColor} strokeWidth="0.55" opacity="0.3" />
+      ))}
+      {/* Ridge cap */}
+      <line x1="106" y1="10" x2="114" y2="10" pathLength="1" stroke={accentColor} strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
+      {/* Gable vent (louvered triangle) */}
+      <path d="M104 50 L116 50 L112 42 L108 42 Z" pathLength="1" fill="none" stroke={lineColor} strokeWidth="0.8" opacity="0.4" />
+      <line x1="106" y1="46" x2="114" y2="46" stroke={lineColor} strokeWidth="0.4" opacity="0.3" pathLength="1" />
+      <line x1="106" y1="48" x2="114" y2="48" stroke={lineColor} strokeWidth="0.4" opacity="0.3" pathLength="1" />
+
+      {/* Dormer on right roof slope */}
+      <path d="M150 44 L156 36 L168 44 Z" pathLength="1" fill={`url(#${uid}-roof)`} data-fill stroke={lineColor} strokeWidth="0.9" />
+      <rect x="153" y="44" width="9" height="8" rx="0.5" pathLength="1" fill={`url(#${uid}-glass)`} data-fill stroke={lineColor} strokeWidth="0.8" />
+      <line x1="157.5" y1="44" x2="157.5" y2="52" stroke={lineColor} strokeWidth="0.4" opacity="0.4" pathLength="1" />
+
+      {/* Chimney with brick gradient */}
+      <rect x="150" y="18" width="14" height="42" rx="1" pathLength="1" fill={`url(#${uid}-brick)`} data-fill stroke={lineColor} strokeWidth="1.5" />
+      <rect x="148" y="16" width="18" height="4" rx="1" pathLength="1" fill={`url(#${uid}-brick)`} data-fill stroke={lineColor} strokeWidth="1.5" />
+      <rect x="149" y="20" width="16" height="2" rx="0.5" fill="none" stroke={lineColor} strokeWidth="0.5" opacity="0.4" pathLength="1" />
+      <rect x="154" y="16" width="6" height="3" rx="0.5" fill="none" stroke={lineColor} strokeWidth="0.5" opacity="0.4" pathLength="1" />
+      {/* Chimney brick courses (offset pattern) */}
+      {[24,30,36,42,48,54].map((y,i) => (
+        <g key={`cb${i}`}>
+          <line x1="150" y1={y} x2="164" y2={y} stroke={lineColor} strokeWidth="0.4" opacity="0.28" pathLength="1" />
+          {i % 2 === 0 ? (
+            <line x1="157" y1={y} x2="157" y2={y+6} stroke={lineColor} strokeWidth="0.3" opacity="0.22" pathLength="1" />
+          ) : (
+            <>
+              <line x1="153" y1={y} x2="153" y2={y+6} stroke={lineColor} strokeWidth="0.3" opacity="0.22" pathLength="1" />
+              <line x1="161" y1={y} x2="161" y2={y+6} stroke={lineColor} strokeWidth="0.3" opacity="0.22" pathLength="1" />
+            </>
+          )}
+        </g>
+      ))}
+
       {/* Chimney smoke */}
-      <path d="M148 20 Q152 14 148 8 Q144 2 148 -4" pathLength="1" fill="none" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
-      <path d="M154 16 Q158 10 154 4 Q150 -2 154 -8" pathLength="1" fill="none" stroke={accentColor} strokeWidth="1" strokeLinecap="round" opacity="0.25" />
-      {/* Structural 'bones' lines */}
-      <line x1="110" y1="54" x2="110" y2="178" pathLength="1" stroke={accentColor} strokeWidth="1" opacity="0.35" strokeDasharray="5 4" />
-      <line x1="48" y1="54" x2="172" y2="178" pathLength="1" stroke={accentColor} strokeWidth="1" opacity="0.2" strokeDasharray="5 4" />
-      <line x1="172" y1="54" x2="48" y2="178" pathLength="1" stroke={accentColor} strokeWidth="1" opacity="0.2" strokeDasharray="5 4" />
-      {/* Horizontal floor lines */}
-      <line x1="48" y1="110" x2="172" y2="110" pathLength="1" stroke={accentColor} strokeWidth="0.75" opacity="0.18" strokeDasharray="4 4" />
-      {/* Door */}
-      <rect x="94" y="124" width="32" height="54" rx="2" pathLength="1" fill="none" stroke={lineColor} strokeWidth="1.5" />
-      <circle cx="120" cy="152" r="2" fill={accentColor} opacity="0.6" />
-      {/* Windows with mullions */}
-      <rect x="58" y="78" width="22" height="22" rx="1" pathLength="1" fill="none" stroke={lineColor} strokeWidth="1.2" />
-      <line x1="69" y1="78" x2="69" y2="100" pathLength="1" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
-      <line x1="58" y1="89" x2="80" y2="89" pathLength="1" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
-      <rect x="140" y="78" width="22" height="22" rx="1" pathLength="1" fill="none" stroke={lineColor} strokeWidth="1.2" />
-      <line x1="151" y1="78" x2="151" y2="100" pathLength="1" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
-      <line x1="140" y1="89" x2="162" y2="89" pathLength="1" stroke={lineColor} strokeWidth="0.7" opacity="0.5" />
+      <path d="M157 14 Q161 8 157 2 Q153 -4 157 -10" pathLength="1" fill="none" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+      <path d="M163 10 Q167 4 163 -2 Q159 -8 163 -14" pathLength="1" fill="none" stroke={accentColor} strokeWidth="1" strokeLinecap="round" opacity="0.25" />
+
+      {/* Downspout on right wall corner */}
+      <line x1="168" y1="58" x2="168" y2="168" stroke={lineColor} strokeWidth="1" opacity="0.35" pathLength="1" />
+      <rect x="166.5" y="168" width="3" height="6" rx="0.5" fill="none" stroke={lineColor} strokeWidth="0.6" opacity="0.35" pathLength="1" />
+
+      {/* Upper-floor windows with full trim + shutters */}
+      {[62, 130].map(x => (
+        <g key={`uw${x}`}>
+          <rect x={x-3} y="61" width="34" height="34" rx="1.5" fill="none" stroke={lineColor} strokeWidth="1" opacity="0.45" pathLength="1" />
+          <rect x={x} y="64" width="28" height="28" rx="1" pathLength="1" fill={`url(#${uid}-glass)`} data-fill stroke={lineColor} strokeWidth="1.2" />
+          <line x1={x+14} y1="64" x2={x+14} y2="92" stroke={lineColor} strokeWidth="0.7" opacity="0.5" pathLength="1" />
+          <line x1={x} y1="78" x2={x+28} y2="78" stroke={lineColor} strokeWidth="0.7" opacity="0.5" pathLength="1" />
+          <line x1={x-4} y1="93" x2={x+32} y2="93" stroke={lineColor} strokeWidth="1.2" opacity="0.55" pathLength="1" />
+          {/* Shutters */}
+          <rect x={x-8} y="64" width="5" height="28" rx="0.5" fill={`url(#${uid}-door)`} data-fill stroke={lineColor} strokeWidth="0.6" opacity="0.5" />
+          <line x1={x-7} y1="68" x2={x-4} y2="68" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x-7} y1="74" x2={x-4} y2="74" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x-7} y1="80" x2={x-4} y2="80" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x-7} y1="86" x2={x-4} y2="86" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <rect x={x+28} y="64" width="5" height="28" rx="0.5" fill={`url(#${uid}-door)`} data-fill stroke={lineColor} strokeWidth="0.6" opacity="0.5" />
+          <line x1={x+29} y1="68" x2={x+32} y2="68" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x+29} y1="74" x2={x+32} y2="74" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x+29} y1="80" x2={x+32} y2="80" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x+29} y1="86" x2={x+32} y2="86" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+        </g>
+      ))}
+
+      {/* Lower-floor windows with trim + shutters + flower boxes */}
+      {[62, 130].map(x => (
+        <g key={`lw${x}`}>
+          <rect x={x-3} y="115" width="34" height="40" rx="1.5" fill="none" stroke={lineColor} strokeWidth="1" opacity="0.45" pathLength="1" />
+          <rect x={x} y="118" width="28" height="34" rx="1" pathLength="1" fill={`url(#${uid}-glass)`} data-fill stroke={lineColor} strokeWidth="1.2" />
+          <line x1={x+14} y1="118" x2={x+14} y2="152" stroke={lineColor} strokeWidth="0.7" opacity="0.5" pathLength="1" />
+          <line x1={x} y1="129" x2={x+28} y2="129" stroke={lineColor} strokeWidth="0.6" opacity="0.4" pathLength="1" />
+          <line x1={x} y1="141" x2={x+28} y2="141" stroke={lineColor} strokeWidth="0.6" opacity="0.4" pathLength="1" />
+          <line x1={x-4} y1="153" x2={x+32} y2="153" stroke={lineColor} strokeWidth="1.2" opacity="0.55" pathLength="1" />
+          {/* Shutters */}
+          <rect x={x-8} y="118" width="5" height="34" rx="0.5" fill={`url(#${uid}-door)`} data-fill stroke={lineColor} strokeWidth="0.6" opacity="0.5" />
+          <line x1={x-7} y1="124" x2={x-4} y2="124" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x-7} y1="131" x2={x-4} y2="131" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x-7} y1="138" x2={x-4} y2="138" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x-7} y1="145" x2={x-4} y2="145" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <rect x={x+28} y="118" width="5" height="34" rx="0.5" fill={`url(#${uid}-door)`} data-fill stroke={lineColor} strokeWidth="0.6" opacity="0.5" />
+          <line x1={x+29} y1="124" x2={x+32} y2="124" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x+29} y1="131" x2={x+32} y2="131" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x+29} y1="138" x2={x+32} y2="138" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          <line x1={x+29} y1="145" x2={x+32} y2="145" stroke={lineColor} strokeWidth="0.3" opacity="0.3" pathLength="1" />
+          {/* Flower box */}
+          <rect x={x-2} y="155" width="32" height="5" rx="0.5" fill={`url(#${uid}-stone)`} data-fill stroke={lineColor} strokeWidth="0.6" opacity="0.5" />
+          <circle cx={x+4} cy="153" r="1.2" fill={accentColor} opacity="0.65" />
+          <circle cx={x+10} cy="152" r="1" fill={accentColor} opacity="0.55" />
+          <circle cx={x+16} cy="153" r="1.2" fill={accentColor} opacity="0.65" />
+          <circle cx={x+22} cy="152" r="1" fill={accentColor} opacity="0.55" />
+        </g>
+      ))}
+
+      {/* Front door: transom + sidelights + double door */}
+      <rect x="93" y="98" width="38" height="74" rx="2" fill="none" stroke={lineColor} strokeWidth="1" opacity="0.45" pathLength="1" />
+      <rect x="98" y="99" width="28" height="6" rx="0.5" pathLength="1" fill={`url(#${uid}-glass)`} data-fill stroke={lineColor} strokeWidth="0.8" />
+      <line x1="105" y1="99" x2="105" y2="105" stroke={lineColor} strokeWidth="0.3" opacity="0.4" pathLength="1" />
+      <line x1="112" y1="99" x2="112" y2="105" stroke={lineColor} strokeWidth="0.3" opacity="0.4" pathLength="1" />
+      <line x1="119" y1="99" x2="119" y2="105" stroke={lineColor} strokeWidth="0.3" opacity="0.4" pathLength="1" />
+      <rect x="95" y="106" width="4" height="64" rx="0.5" pathLength="1" fill={`url(#${uid}-glass)`} data-fill stroke={lineColor} strokeWidth="0.6" />
+      <rect x="125" y="106" width="4" height="64" rx="0.5" pathLength="1" fill={`url(#${uid}-glass)`} data-fill stroke={lineColor} strokeWidth="0.6" />
+      <rect x="98" y="106" width="28" height="64" rx="1.5" pathLength="1" fill={`url(#${uid}-door)`} data-fill stroke={lineColor} strokeWidth="1.5" />
+      <line x1="112" y1="108" x2="112" y2="168" stroke={lineColor} strokeWidth="1" opacity="0.4" pathLength="1" />
+      <rect x="100" y="110" width="9" height="12" rx="0.5" fill="none" stroke={lineColor} strokeWidth="0.5" opacity="0.35" pathLength="1" />
+      <rect x="115" y="110" width="9" height="12" rx="0.5" fill="none" stroke={lineColor} strokeWidth="0.5" opacity="0.35" pathLength="1" />
+      <rect x="100" y="126" width="9" height="12" rx="0.5" fill="none" stroke={lineColor} strokeWidth="0.5" opacity="0.35" pathLength="1" />
+      <rect x="115" y="126" width="9" height="12" rx="0.5" fill="none" stroke={lineColor} strokeWidth="0.5" opacity="0.35" pathLength="1" />
+      <rect x="100" y="142" width="9" height="12" rx="0.5" fill="none" stroke={lineColor} strokeWidth="0.5" opacity="0.35" pathLength="1" />
+      <rect x="115" y="142" width="9" height="12" rx="0.5" fill="none" stroke={lineColor} strokeWidth="0.5" opacity="0.35" pathLength="1" />
+      <circle cx="116" cy="136" r="1.4" fill={accentColor} opacity="0.85" />
+      <circle cx="108" cy="136" r="1.4" fill={accentColor} opacity="0.85" />
+      <circle cx="112" cy="120" r="1.8" fill="none" stroke={accentColor} strokeWidth="0.6" opacity="0.5" pathLength="1" />
+      <line x1="91" y1="98" x2="133" y2="98" stroke={lineColor} strokeWidth="1.4" opacity="0.5" pathLength="1" />
+
+      {/* Front steps (two tiers) */}
+      <rect x="90" y="170" width="44" height="6" rx="1" pathLength="1" fill={`url(#${uid}-stone)`} data-fill stroke={lineColor} strokeWidth="0.8" opacity="0.6" />
+      <rect x="86" y="176" width="52" height="8" rx="1" pathLength="1" fill={`url(#${uid}-stone)`} data-fill stroke={lineColor} strokeWidth="0.8" opacity="0.6" />
+      <line x1="112" y1="184" x2="112" y2="196" stroke={accentColor} strokeWidth="1.2" strokeDasharray="4 4" opacity="0.4" pathLength="1" />
+      <rect x="104" y="170" width="16" height="2.5" rx="0.5" fill="none" stroke={accentColor} strokeWidth="0.5" opacity="0.4" pathLength="1" />
+
+      {/* Foundation shrubs (organic, layered) */}
+      <path d="M14 184 Q14 158 28 158 Q42 158 42 184 Z" pathLength="1" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.8" opacity="0.6" />
+      <path d="M178 184 Q178 158 192 158 Q206 158 206 184 Z" pathLength="1" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.8" opacity="0.6" />
+      <circle cx="22" cy="170" r="2.5" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.4" opacity="0.4" />
+      <circle cx="32" cy="166" r="2.8" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.4" opacity="0.4" />
+      <circle cx="38" cy="172" r="2.2" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.4" opacity="0.4" />
+      <circle cx="184" cy="170" r="2.5" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.4" opacity="0.4" />
+      <circle cx="192" cy="166" r="2.8" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.4" opacity="0.4" />
+      <circle cx="200" cy="172" r="2.2" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.4" opacity="0.4" />
+      <circle cx="20" cy="166" r="0.7" fill={lineColor} opacity="0.3" />
+      <circle cx="28" cy="162" r="0.7" fill={lineColor} opacity="0.3" />
+      <circle cx="36" cy="168" r="0.7" fill={lineColor} opacity="0.3" />
+      <circle cx="186" cy="166" r="0.7" fill={lineColor} opacity="0.3" />
+      <circle cx="194" cy="162" r="0.7" fill={lineColor} opacity="0.3" />
+      <circle cx="202" cy="168" r="0.7" fill={lineColor} opacity="0.3" />
+
+      {/* Small tree on left (trunk + canopy) */}
+      <path d="M8 184 L8 168 Q7 164 9 162 Q12 160 10 156 Q8 152 11 150" fill="none" stroke={lineColor} strokeWidth="1.4" opacity="0.55" pathLength="1" />
+      <circle cx="9" cy="150" r="9" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.7" opacity="0.55" />
+      <circle cx="5" cy="146" r="5" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.5" opacity="0.45" />
+      <circle cx="13" cy="148" r="5" fill={`url(#${uid}-leaf)`} data-fill stroke={lineColor} strokeWidth="0.5" opacity="0.45" />
+      <circle cx="6" cy="148" r="0.6" fill={lineColor} opacity="0.3" />
+      <circle cx="10" cy="144" r="0.6" fill={lineColor} opacity="0.3" />
+      <circle cx="14" cy="150" r="0.6" fill={lineColor} opacity="0.3" />
+      <circle cx="8" cy="152" r="0.6" fill={lineColor} opacity="0.3" />
     </svg>
   );
 };
@@ -84,6 +307,33 @@ const Nav = ({ route }) => {
     const onKey = (e) => { if (e.key === 'Escape') { setOpen(false); document.body.classList.remove('menu-open'); } };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
+
+  // Focus trap: when the mobile menu is open, keep Tab focus inside it.
+  React.useEffect(() => {
+    if (!open) return;
+    const menu = document.getElementById('mobile-menu');
+    if (!menu) return;
+    const selector = 'a[href], button:not([disabled])';
+    const onKeydown = (e) => {
+      if (e.key !== 'Tab') return;
+      const focusable = Array.from(menu.querySelectorAll(selector)).filter(el => el.offsetParent !== null);
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeydown);
+    // Move focus into the menu on open
+    const firstLink = menu.querySelector(selector);
+    if (firstLink) firstLink.focus();
+    return () => document.removeEventListener('keydown', onKeydown);
   }, [open]);
 
   React.useEffect(() => {
@@ -170,12 +420,17 @@ const Nav = ({ route }) => {
         </div>
       </nav>
       <div id="mobile-menu" className={`mobile-menu ${open ? 'open' : ''}`} aria-hidden={!open}>
-        {NAV_ITEMS.map(item => (
-          <a key={item.href} href={item.href} onClick={() => setOpen(false)}
-             tabIndex={open ? 0 : -1}>
-            {item.label}
-          </a>
-        ))}
+        {NAV_ITEMS.map(item => {
+          const isActive = route === item.href.slice(2);
+          return (
+            <a key={item.href} href={item.href} onClick={() => setOpen(false)}
+               className={isActive ? 'active' : ''}
+               aria-current={isActive ? 'page' : undefined}
+               tabIndex={open ? 0 : -1}>
+              {item.label}
+            </a>
+          );
+        })}
         <a href="#/contact" onClick={() => setOpen(false)}
            tabIndex={open ? 0 : -1}
            style={{ marginTop: 16, color: 'var(--caramel-deep)' }}>
